@@ -18,22 +18,21 @@ const Footer = () => {
           </FooterList>
           <FooterList>
             <h3 className="text-base font-bold mb-2">Customer Services</h3>
-            <Link href="#">Phones</Link>
-            <Link href="#">Laptops</Link>
-            <Link href="#">Desktops</Link>
+            <Link href="#">Contact Us</Link>
+            <Link href="#">Shopping Pollicy</Link>
+            <Link href="#">Returns & Exchanges</Link>
             <Link href="#">Watches</Link>
-            <Link href="#">TVs</Link>
-            <Link href="#">Accessories</Link>
+            <Link href="#">FAQs</Link>
           </FooterList>
-          <FooterList>
+          <div className="w-full md:w-1/3  mb-6 md:mb-0">
             <h3 className="text-base font-bold mb-2">About Us</h3>
-            <Link href="#">Phones</Link>
-            <Link href="#">Laptops</Link>
-            <Link href="#">Desktops</Link>
-            <Link href="#">Watches</Link>
-            <Link href="#">TVs</Link>
-            <Link href="#">Accessories</Link>
-          </FooterList>
+            <p className="mb.2">
+              At our electronics store, we are dedicated to providing the latest
+              and greatest devices and accessories to our customers. With a wide
+              selection of phones, TVs, laptops, watches, and accessories.
+            </p>
+            <p>&copy; {new Date().getFullYear()}</p>
+          </div>
           <FooterList>
             <h3 className="text-base font-bold mb-2">Follow Us</h3>
             <Link href="#">Phones</Link>
