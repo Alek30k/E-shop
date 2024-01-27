@@ -8,6 +8,7 @@ const NavBar = () => {
   return (
     <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm">
       <div className="py-4 border-b-[1px]">
+        s
         <Container>
           <div className="flex  items-center justify-between gap-3 md:gap-0">
             <Link
