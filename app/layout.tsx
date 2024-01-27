@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <main>
-          <NavBar />
+          {/* <NavBar /> */}
           {children}
           <Footer />
         </main>
