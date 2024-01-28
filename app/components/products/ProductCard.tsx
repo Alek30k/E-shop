@@ -1,5 +1,6 @@
 "use client";
 
+import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
 
 interface productCardProps {
@@ -18,9 +19,9 @@ const ProductCard = ({ data }: productCardProps) => {
             alt={data.name}
           />
         </div>
+        <div className="mt-4">{truncateText(data.name)}</div>
         <div></div>
-        <div></div>
-        <div></div>
+        <div>{data.reviews.length} reviews</div>
         <div></div>
       </div>
     </div>
