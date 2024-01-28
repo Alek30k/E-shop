@@ -6,6 +6,10 @@ interface ProductDetailsProps {
   product: any;
 }
 
+const Horizontal = () => {
+  return <hr className="w-[30%] my-2" />;
+};
+
 const ProductDetails = ({ product }: ProductDetailsProps) => {
   const productRaiting =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -20,7 +24,16 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <Rating value={productRaiting} readOnly />
           <div>{product.reviews.length} reviews</div>
         </div>
-        <div className="text-justify">{product.description}</div>
+        <Horizontal />
+        <div className="text-justify">{product.description}Horizontal</div>
+        <Horizontal />
+        <div>
+          <span className="font-semibold">CATEGORY: </span> {product.category}
+        </div>
+        <div>
+          <span className="font-semibold">BRAND: </span> {product.brand}
+        </div>
+        <div>{product.inStock ? "In stock" : "Out of stock"}</div>
       </div>
     </div>
   );
