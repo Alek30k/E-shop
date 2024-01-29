@@ -36,7 +36,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     category: product.category,
     brand: product.brand,
     selectedImg: { ...product.images[0] },
-    quantity: product.quantity,
+    quantity: 1,
     price: product.price,
   });
 
