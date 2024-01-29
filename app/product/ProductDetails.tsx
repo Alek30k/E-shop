@@ -6,6 +6,21 @@ interface ProductDetailsProps {
   product: any;
 }
 
+export type CartProductType = {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  brand: string;
+  selectedImg: SelecteImgType;
+};
+
+export type SelecteImgType = {
+  color: string;
+  colorCode: string;
+  image: string;
+};
+
 const Horizontal = () => {
   return <hr className="w-[30%] my-2" />;
 };
@@ -33,7 +48,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <div>
           <span className="font-semibold">BRAND: </span> {product.brand}
         </div>
-        <div>{product.inStock ? "In stock" : "Out of stock"}</div>
+        <div className={product.inStock ? "text-teal-400" : "text-rose-400"}>
+          {product.inStock ? "In stock" : "Out of stock"}
+        </div>
+        <Horizontal />
+        <div>color: </div>
+        <Horizontal />
+        <div>quantity: </div>
+        <Horizontal />
+        <div>add to cart</div>
       </div>
     </div>
   );
