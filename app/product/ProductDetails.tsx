@@ -46,7 +46,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     product.reviews.length;
 
   const handleColorSelect = useCallback(
-    (value: SelecteImgType) => {},
+    (value: SelecteImgType) => {
+      setCartProduct((prev) => {
+        return { ...prev, selectedImg: value };
+      });
+    },
     [cartProduct.selectedImg]
   );
 
