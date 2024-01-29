@@ -1,6 +1,7 @@
 "use client";
 
 import { Rating } from "@mui/material";
+import { useState } from "react";
 
 interface ProductDetailsProps {
   product: any;
@@ -13,6 +14,8 @@ export type CartProductType = {
   category: string;
   brand: string;
   selectedImg: SelecteImgType;
+  quantity: number;
+  price: number;
 };
 
 export type SelecteImgType = {
@@ -26,6 +29,17 @@ const Horizontal = () => {
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+  const [cartProduct, setCartProduct] = useState<CartProductType>({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    category: product.category,
+    brand: product.brand,
+    selectedImg: { ...product.images[0] },
+    quantity: product.quantity,
+    price: product.price,
+  });
+
   const productRaiting =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
     product.reviews.length;
