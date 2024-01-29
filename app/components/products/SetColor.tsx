@@ -28,7 +28,10 @@ const SetColor = ({
                     : "border-none"
                 }`}
               >
-                <div></div>
+                <div
+                  style={{ background: image.colorCode }}
+                  className="h-5 w-5 rounded-full"
+                ></div>
               </div>
             );
           })}
