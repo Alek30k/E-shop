@@ -56,6 +56,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   );
 
   const handleQtyIncrease = useCallback(() => {
+    if (cartProduct.quantity === 99) {
+      return;
+    }
+
     setCartProduct((prev) => {
       return { ...prev, quantity: prev.quantity + 1 };
     });
