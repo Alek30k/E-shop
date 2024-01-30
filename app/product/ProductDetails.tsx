@@ -62,6 +62,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   }, [cartProduct]);
 
   const handleQtyDecrease = useCallback(() => {
+    if (cartProduct.quantity === 1) {
+      return;
+    }
     setCartProduct((prev) => {
       return { ...prev, quantity: prev.quantity - 1 };
     });
