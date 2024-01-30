@@ -11,6 +11,10 @@ const Product = ({ params }: { params: IParams }) => {
     <div className="p-8">
       <Container>
         <ProductDetails product={product} />
+        <div className="flex flex-col mt-20 gap-4">
+          <div>Add Rating</div>
+          <div>List</div>
+        </div>
       </Container>
     </div>
   );
