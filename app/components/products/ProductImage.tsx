@@ -19,7 +19,11 @@ const ProductImage = ({
       <div className="flex flex-col items-center justify-center gap-4 cursor-pointer border h-full max-h-[500px] min-h-[300px] sm:min-h-[400px]">
         {product.images.map((image: SelecteImgType) => {
           return (
-            <div key={image.color} onClick={() => handleColorSelect(image)}>
+            <div
+              key={image.color}
+              onClick={() => handleColorSelect(image)}
+              className="realtive"
+            >
               <Image
                 src={image.image}
                 alt={image.color}
