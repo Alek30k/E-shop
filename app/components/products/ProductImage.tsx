@@ -8,7 +8,11 @@ interface ProductImgProps {
   handleColorSelect: (value: SelecteImgType) => void;
 }
 
-const ProductImage = () => {
+const ProductImage = ({
+  cartProduct,
+  product,
+  handleColorSelect,
+}: ProductImgProps) => {
   return <div>ProductImage</div>;
 };
 
