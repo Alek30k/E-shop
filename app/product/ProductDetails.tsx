@@ -118,7 +118,6 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <div className="max-w-[300px]">
           <Button label="Add To Cart" onClick={() => {}} />
         </div>
-        OP
       </div>
     </div>
   );
