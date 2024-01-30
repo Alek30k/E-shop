@@ -18,10 +18,18 @@ const Button = ({
   outline,
   small,
   custom,
-  icon,
+  icon: Icon,
   onClick,
 }: ButtonProps) => {
-  return <div>Button</div>;
+  return (
+    <button
+      disabled={disabled}
+      className={`disabled: opacity-70 disabled:cursor-not-allowed rounded-md hover:opacity-80 transition w-full border-slate-700`}
+    >
+      {Icon && <Icon size={24} />}
+      {label}
+    </button>
+  );
 };
 
 export default Button;
