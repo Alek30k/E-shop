@@ -1,9 +1,19 @@
 "use client";
 
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 type CartContextType = {
   cartTotalQty: number;
 };
 
-export const CartContext = createContext(null);
+export const CartContext = createContext<CartContextType | null>(null);
+
+export const CartContextProvider = () => {
+  const [cartTotalQty, setCartTotalQty] = useState(0);
+
+  const value = {
+    cartTotalQty,
+  };
+
+  return <CartContext.Provider value={value} />;
+};
