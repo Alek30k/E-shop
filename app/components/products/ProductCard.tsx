@@ -10,6 +10,10 @@ interface productCardProps {
   data: any;
 }
 
+const Horizontal = () => {
+  return <hr className="w-[100%] mt-6" />;
+};
+
 const ProductCard = ({ data }: productCardProps) => {
   const router = useRouter();
 
@@ -31,7 +35,8 @@ const ProductCard = ({ data }: productCardProps) => {
             alt={data.name}
           />
         </div>
-        <div className="mt-4">{truncateText(data.name)}</div>
+        <Horizontal />
+        <div className="mt-4">{truncateText(data.name)}Horizontal</div>
         <div>
           <Rating value={productRaiting} readOnly />
         </div>
