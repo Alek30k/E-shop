@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
 
 interface AvatarProps {
   src?: string | null | undefined;
@@ -15,7 +16,7 @@ const Avatar = ({ src }: AvatarProps) => {
     />;
   }
 
-  return <div></div>;
+  return <FaUserCircle size={24} />;
 };
 
 export default Avatar;
