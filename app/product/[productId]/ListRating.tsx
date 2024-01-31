@@ -26,7 +26,8 @@ const ListRating = ({ product }: ListRatingProps) => {
                 </div>
                 <div className="mt-2">
                   <Rating value={review.rating} readOnly />
-                  <div>{review.comment}</div>
+                  <div className="ml-2">{review.comment}</div>
+                  <hr className="my-4" />
                 </div>
               </div>
             );
