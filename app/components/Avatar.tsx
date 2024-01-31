@@ -7,13 +7,15 @@ interface AvatarProps {
 
 const Avatar = ({ src }: AvatarProps) => {
   if (src) {
-    <Image
-      src={src}
-      alt="Avatar"
-      className="rounded-full"
-      width="30"
-      height="30"
-    />;
+    return (
+      <Image
+        src={src}
+        alt="Avatar"
+        className="rounded-full"
+        width="30"
+        height="30"
+      />
+    );
   }
 
   return <FaUserCircle size={24} />;
