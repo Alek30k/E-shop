@@ -1,9 +1,12 @@
 "use client";
 
+import { CartProductType } from "@/app/product/ProductDetails";
 import { createContext, useContext, useState } from "react";
 
 type CartContextType = {
   cartTotalQty: number;
+  cartProducts: CartProductType[] | null;
+  handleAddProductCart: (product: CartProductType) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -13,7 +16,10 @@ interface Props {
 }
 
 export const CartContextProvider = (props: Props) => {
-  const [cartTotalQty, setCartTotalQty] = useState(0);
+  const [cartTotalQty, setCartTotalQty] = useState(10);
+  const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
+    null
+  );
 
   const value = {
     cartTotalQty,
