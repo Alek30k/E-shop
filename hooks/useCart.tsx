@@ -6,7 +6,7 @@ import { createContext, useCallback, useContext, useState } from "react";
 type CartContextType = {
   cartTotalQty: number;
   cartProducts: CartProductType[] | null;
-  handleAddProductCart: (product: CartProductType) => void;
+  handleAddProductToCart: (product: CartProductType) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
