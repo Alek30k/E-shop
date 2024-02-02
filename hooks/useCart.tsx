@@ -21,16 +21,17 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
-  const handleAddProductToCart = useCallback((product:CartProductType) => {
-    setCartProducts((prev)=>{
+  const handleAddProductToCart = useCallback((product: CartProductType) => {
+    setCartProducts((prev) => {
       let updatedCart;
 
-      if(){
-        updatedCart= [...prev, product]
+      if (prev) {
+        updatedCart = [...prev, product];
       } else {
-        updatedCart = [product]
+        updatedCart = [product];
       }
-    })
+      return updatedCart;
+    });
   }, []);
 
   const value = {
