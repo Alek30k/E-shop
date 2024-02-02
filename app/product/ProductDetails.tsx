@@ -1,7 +1,7 @@
 "use client";
 
 import { Rating } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SetColor from "../components/products/SetColor";
 import SetQuantity from "../components/products/SetQuantity";
 import Button from "../components/products/Button";
@@ -35,8 +35,21 @@ const Horizontal = () => {
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { handleAddProductToCart, cartProducts } = useCart();
+  const [isProductInCart, setIsProductInCart] = useState(false);
 
-  console.log(cartProducts);
+  useEffect(() => {
+    setIsProductInCart(false);
+
+    if (cartProducts) {
+      const existingIndex = cartProducts.findIndex(
+        (item) => item.id === product.id
+      );
+
+      if (existingIndex > -1) {
+        setIsProductInCart(true);
+      }
+    }
+  }, [cartProducts]);
 
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
