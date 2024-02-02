@@ -130,7 +130,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               <MdCheckCircle size={20} className="text-teal-400" />
               <span>Product added to cart</span>
             </p>
-            <div>
+            <div className="max-w-[300px]">
               <Button
                 label="View Cart"
                 outline

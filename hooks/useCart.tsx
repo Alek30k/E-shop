@@ -1,7 +1,13 @@
 "use client";
 
 import { CartProductType } from "@/app/product/ProductDetails";
-import { createContext, useCallback, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type CartContextType = {
   cartTotalQty: number;
@@ -21,6 +27,8 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
+  useEffect(() => {}, []);
+
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
       let updatedCart;
@@ -30,6 +38,8 @@ export const CartContextProvider = (props: Props) => {
       } else {
         updatedCart = [product];
       }
+
+      localStorage.setItem("eShopCart", JSON.stringify(updatedCart));
       return updatedCart;
     });
   }, []);
