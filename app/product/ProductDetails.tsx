@@ -8,6 +8,7 @@ import Button from "../components/products/Button";
 import ProductImage from "../components/products/ProductImage";
 import { useCart } from "@/hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 interface ProductDetailsProps {
   product: any;
@@ -62,6 +63,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     quantity: 1,
     price: product.price,
   });
+
+  const router = useRouter();
 
   const productRaiting =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -123,10 +126,19 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <Horizontal />
         {isProductInCart ? (
           <>
-            <p className="mb-2 text-slate-500 flex items-center">
+            <p className="mb-2 text-slate-500 flex items-center gap-1">
               <MdCheckCircle size={20} className="text-teal-400" />
               <span>Product added to cart</span>
             </p>
+            <div>
+              <Button
+                label="View Cart"
+                outline
+                onClick={() => {
+                  router.push("/cart");
+                }}
+              />
+            </div>
           </>
         ) : (
           <>
