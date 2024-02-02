@@ -27,7 +27,12 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const cartItems: any = localStorage.getItem("eShopCartItems");
+    const cProducts: CartProductType[] | null = JSON.parse(cartItems);
+
+    setCartProducts(cProducts);
+  }, []);
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
@@ -39,7 +44,7 @@ export const CartContextProvider = (props: Props) => {
         updatedCart = [product];
       }
 
-      localStorage.setItem("eShopCart", JSON.stringify(updatedCart));
+      localStorage.setItem("eShopCartItems", JSON.stringify(updatedCart));
       return updatedCart;
     });
   }, []);

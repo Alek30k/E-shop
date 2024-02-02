@@ -154,8 +154,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               handleQtyIncrease={handleQtyIncrease}
               handleQtyDecrease={handleQtyDecrease}
             />
-            <Horizontal />
-            <div className="max-w-[300px]">
+            {/* <Horizontal /> */}
+            <div className="max-w-[300px] mt-4">
               <Button
                 label="Add To Cart"
                 onClick={() => handleAddProductToCart(cartProduct)}
