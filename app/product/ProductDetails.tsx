@@ -6,6 +6,7 @@ import SetColor from "../components/products/SetColor";
 import SetQuantity from "../components/products/SetQuantity";
 import Button from "../components/products/Button";
 import ProductImage from "../components/products/ProductImage";
+import { useCart } from "@/hooks/useCart";
 
 interface ProductDetailsProps {
   product: any;
@@ -33,6 +34,10 @@ const Horizontal = () => {
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+  const { handleAddProductToCart, cartProducts } = useCart();
+
+  console.log(cartProducts);
+
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
@@ -116,7 +121,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         />
         <Horizontal />
         <div className="max-w-[300px]">
-          <Button label="Add To Cart" onClick={() => {}} />
+          <Button
+            label="Add To Cart"
+            onClick={() => handleAddProductToCart(cartProduct)}
+          />
         </div>
       </div>
     </div>
