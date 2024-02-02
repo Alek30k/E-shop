@@ -1,7 +1,7 @@
 "use client";
 
 import { CartProductType } from "@/app/product/ProductDetails";
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 type CartContextType = {
   cartTotalQty: number;
@@ -21,8 +21,12 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
+  const handleAddProductToCart = useCallback(() => {}, []);
+
   const value = {
     cartTotalQty,
+    cartProducts,
+    handleAddProductToCart,
   };
 
   return <CartContext.Provider value={value} {...props} />;
