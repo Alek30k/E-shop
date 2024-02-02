@@ -21,7 +21,17 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
-  const handleAddProductToCart = useCallback(() => {}, []);
+  const handleAddProductToCart = useCallback((product:CartProductType) => {
+    setCartProducts((prev)=>{
+      let updatedCart;
+
+      if(){
+        updatedCart= [...prev, product]
+      } else {
+        updatedCart = [product]
+      }
+    })
+  }, []);
 
   const value = {
     cartTotalQty,
