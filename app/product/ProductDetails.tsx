@@ -7,6 +7,7 @@ import SetQuantity from "../components/products/SetQuantity";
 import Button from "../components/products/Button";
 import ProductImage from "../components/products/ProductImage";
 import { useCart } from "@/hooks/useCart";
+import { MdCheckCircle } from "react-icons/md";
 
 interface ProductDetailsProps {
   product: any;
@@ -120,25 +121,36 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           {product.inStock ? "In stock" : "Out of stock"}
         </div>
         <Horizontal />
-        <SetColor
-          cartProduct={cartProduct}
-          images={product.images}
-          handleColorSelect={handleColorSelect}
-        />
-        <Horizontal />
-        <SetQuantity
-          cartProduct={cartProduct}
-          // cartCounter={cartCounter}
-          handleQtyIncrease={handleQtyIncrease}
-          handleQtyDecrease={handleQtyDecrease}
-        />
-        <Horizontal />
-        <div className="max-w-[300px]">
-          <Button
-            label="Add To Cart"
-            onClick={() => handleAddProductToCart(cartProduct)}
-          />
-        </div>
+        {isProductInCart ? (
+          <>
+            <p className="mb-2 text-slate-500 flex items-center">
+              <MdCheckCircle size={20} className="text-teal-400" />
+              <span>Product added to cart</span>
+            </p>
+          </>
+        ) : (
+          <>
+            <SetColor
+              cartProduct={cartProduct}
+              images={product.images}
+              handleColorSelect={handleColorSelect}
+            />
+            <Horizontal />
+            <SetQuantity
+              cartProduct={cartProduct}
+              // cartCounter={cartCounter}
+              handleQtyIncrease={handleQtyIncrease}
+              handleQtyDecrease={handleQtyDecrease}
+            />
+            <Horizontal />
+            <div className="max-w-[300px]">
+              <Button
+                label="Add To Cart"
+                onClick={() => handleAddProductToCart(cartProduct)}
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
