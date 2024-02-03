@@ -41,13 +41,14 @@ const CartClient = () => {
             return <div key={item.id}>{item.name}</div>;
           })}
       </div>
-      <div>
+      <div className="border-t-[1.5px] border-slate-200 py-4 flex justify-between gap-4">
         <div className="w-[90px]">
           <Button label="Cleart Cart" onClick={() => {}} small outline />
         </div>
-        <div>
+        <div className="text-sm flex flex-col gap-1 items-start">
           <div>
             <span>Subtotal</span>
+            <p>Taxes and shipping calculate at checkout</p>
           </div>
         </div>
       </div>
