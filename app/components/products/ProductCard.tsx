@@ -1,6 +1,6 @@
 "use client";
 
-import { formaPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncateText";
 import { Rating } from "@mui/material";
 import Image from "next/image";
@@ -37,7 +37,7 @@ const ProductCard = ({ data }: productCardProps) => {
           <Rating value={productRaiting} readOnly />
         </div>
         <div>{data.reviews.length} reviews</div>
-        <div className="font-semibold"> {formaPrice(data.price)}</div>
+        <div className="font-semibold"> {formatPrice(data.price)}</div>
       </div>
     </div>
   );
