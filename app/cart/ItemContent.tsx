@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { CartProductType } from "../product/ProductDetails";
 import { formatPrice } from "@/utils/formatPrice";
+import { truncateText } from "@/utils/truncateText";
 
 interface ItemContentProps {
   item: CartProductType;
@@ -15,11 +16,14 @@ const ItemContent = ({ item }: ItemContentProps) => {
         <Link href={`/product/${item.id}`}>
           <div></div>
         </Link>
-        <div className="flex flex-col justify-between"></div>
+        <div className="flex flex-col justify-between">
+          <Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
+          <div>{item.selectedImg.color}</div>
+        </div>
       </div>
       <div>{formatPrice(item.price)}</div>
-      <div>{item.name}</div>
-      <div>{item.name}</div>
+      <div>{item.price}</div>
+      <div>{item.quantity}</div>
     </div>
   );
 };
