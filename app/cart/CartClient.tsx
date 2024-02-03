@@ -42,8 +42,13 @@ const CartClient = () => {
           })}
       </div>
       <div>
+        <div className="w-[90px]">
+          <Button label="Cleart Cart" onClick={() => {}} small outline />
+        </div>
         <div>
-          <Button label="Cleart Cart" onClick={() => {}} />
+          <div>
+            <span>Subtotal</span>
+          </div>
         </div>
       </div>
     </div>
