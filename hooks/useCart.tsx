@@ -73,7 +73,14 @@ export const CartContextProvider = (props: Props) => {
     [cartProducts]
   );
 
-  const handleCartQtyIncrease = useCallback(() => {}, []);
+  const handleCartQtyIncrease = useCallback(
+    (product: CartContextType) => {
+      if (product.quantity === 99) {
+        return toast.error("Ooops! Maximum reached");
+      }
+    },
+    [cartProducts]
+  );
 
   const value = {
     cartTotalQty,
