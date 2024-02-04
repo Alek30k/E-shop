@@ -18,6 +18,7 @@ type CartContextType = {
   handleRemoveProductFromCart: (product: CartProductType) => void;
   id: string | null;
   quantity: number;
+  handleCartQtyIncrease: (product: CartProductType) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -107,6 +108,7 @@ export const CartContextProvider = (props: Props) => {
     cartProducts,
     handleAddProductToCart,
     handleRemoveProductFromCart,
+    handleCartQtyIncrease,
   };
 
   return <CartContext.Provider value={value} {...props} />;
