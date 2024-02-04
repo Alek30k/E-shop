@@ -51,6 +51,8 @@ export const CartContextProvider = (props: Props) => {
     toast.success("Product added to cart");
   }, []);
 
+  const handleRemoveProductFromCart = useCallback(() => {}, []);
+
   const value = {
     cartTotalQty,
     cartProducts,
