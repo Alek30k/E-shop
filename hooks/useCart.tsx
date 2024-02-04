@@ -73,6 +73,8 @@ export const CartContextProvider = (props: Props) => {
     [cartProducts]
   );
 
+  const handleCartQtyIncrease = useCallback(() => {}, []);
+
   const value = {
     cartTotalQty,
     cartProducts,
