@@ -17,6 +17,7 @@ type CartContextType = {
   handleAddProductToCart: (product: CartProductType) => void;
   handleRemoveProductFromCart: (product: CartProductType) => void;
   id: string | null;
+  quantity: number;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -75,8 +76,27 @@ export const CartContextProvider = (props: Props) => {
 
   const handleCartQtyIncrease = useCallback(
     (product: CartContextType) => {
+      let updatedCart;
+
       if (product.quantity === 99) {
         return toast.error("Ooops! Maximum reached");
+      }
+
+      if (cartProducts) {
+        updatedCart = [...cartProducts];
+
+        const existingIndex = cartProducts.findIndex(
+          (item) => item.id === product.id
+        );
+
+        if (existingIndex > -1) {
+          updatedCart[existingIndex].quantity = ++updatedCart[existingIndex]
+            .quantity;
+        }
+
+        setCartProducts(updatedCart);
+
+        localStorage.setItem("eShopCartItems", JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
