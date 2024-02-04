@@ -5,6 +5,7 @@ import { CartProductType } from "../product/ProductDetails";
 import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
+import SetQuantity from "../components/products/SetQuantity";
 
 interface ItemContentProps {
   item: CartProductType;
@@ -35,8 +36,17 @@ const ItemContent = ({ item }: ItemContentProps) => {
         </div>
       </div>
       <div className="justify-self-center">{formatPrice(item.price)}</div>
-      <div className="justify-self-center">{item.price}</div>
-      <div className="justify-self-end font-semibold">{item.quantity}</div>
+      <div className="justify-self-center">
+        <SetQuantity
+          cartCounter={true}
+          cartProduct={item}
+          handleQtyIncrease={() => {}}
+          handleQtyDecrease={() => {}}
+        />
+      </div>
+      <div className="justify-self-end font-semibold">
+        {formatPrice(item.price * item.quantity)}
+      </div>
     </div>
   );
 };
