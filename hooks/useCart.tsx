@@ -17,8 +17,7 @@ type CartContextType = {
   cartProducts: CartProductType[] | null;
   handleAddProductToCart: (product: CartProductType) => void;
   handleRemoveProductFromCart: (product: CartProductType) => void;
-  id: string | null;
-  quantity: number;
+
   handleCartQtyIncrease: (product: CartProductType) => void;
   handleCartQtyDecrease: (product: CartProductType) => void;
   handleClearCart: () => void;
@@ -88,7 +87,7 @@ export const CartContextProvider = (props: Props) => {
   }, []);
 
   const handleRemoveProductFromCart = useCallback(
-    (product: CartContextType) => {
+    (product: CartProductType) => {
       if (cartProducts) {
         const filteredProducts = cartProducts.filter((item) => {
           return item.id !== product.id;
@@ -107,7 +106,7 @@ export const CartContextProvider = (props: Props) => {
   );
 
   const handleCartQtyIncrease = useCallback(
-    (product: CartContextType) => {
+    (product: CartProductType) => {
       let updatedCart;
 
       if (product.quantity === 99) {
@@ -135,7 +134,7 @@ export const CartContextProvider = (props: Props) => {
   );
 
   const handleCartQtyDecrease = useCallback(
-    (product: CartContextType) => {
+    (product: CartProductType) => {
       let updatedCart;
 
       if (product.quantity === 1) {
