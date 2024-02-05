@@ -7,8 +7,9 @@ import SetQuantity from "../components/products/SetQuantity";
 import Button from "../components/products/Button";
 import ProductImage from "../components/products/ProductImage";
 import { useCart } from "@/hooks/useCart";
-import { MdCheckCircle } from "react-icons/md";
+import { MdArrowBack, MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProductDetailsProps {
   product: any;
@@ -112,7 +113,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <div>{product.reviews.length} reviews</div>
         </div>
         <Horizontal />
-        <div className="text-justify">{product.description}Horizontal</div>
+        <div className="text-justify">{product.description}</div>
         <Horizontal />
         <div>
           <span className="font-semibold">CATEGORY: </span> {product.category}
@@ -139,6 +140,13 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 }}
               />
             </div>
+            <Link
+              href={"/"}
+              className="text-slate-500 flex items-center gap-1 mt-2"
+            >
+              <MdArrowBack />
+              <span>Continue Shopping</span>
+            </Link>
           </>
         ) : (
           <>
