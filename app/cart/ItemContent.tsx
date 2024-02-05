@@ -32,11 +32,13 @@ const ItemContent = ({ item }: ItemContentProps) => {
           </div>
         </Link>
         <div className="flex flex-col justify-between">
-          <Link href={`/product/${item.id}`}>{truncateText(item.name)}</Link>
+          <Link href={`/product/${item.id}`} className="text-lg">
+            {truncateText(item.name)}
+          </Link>
           <div>{item.selectedImg.color}</div>
           <div className="w-[70px]">
             <button
-              className="text-slate-500 underline"
+              className="text-slate-500 underline "
               onClick={() => handleRemoveProductFromCart(item)}
             >
               Remove
