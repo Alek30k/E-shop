@@ -1,12 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Heading from "../components/Heading";
+import Input from "../components/inputs/Input";
 
 const RegisterForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <>
-      <Heading title="Sun up for E-Shop" />
+      <Heading title="Sign up for E-Shop" />
       <hr className="bg-slate-300 w-full h-px" />
+      <Input id="name" label="Name" disabled={isLoading} />
     </>
   );
 };

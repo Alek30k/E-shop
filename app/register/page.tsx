@@ -1,5 +1,15 @@
-const page = () => {
-  return <div>page</div>;
+import Container from "../components/Container";
+import FormWrap from "../components/FormWrap";
+import RegisterForm from "./RegisterForm";
+
+const Register = () => {
+  return (
+    <Container>
+      <FormWrap>
+        <RegisterForm />
+      </FormWrap>
+    </Container>
+  );
 };
 
-export default page;
+export default Register;
