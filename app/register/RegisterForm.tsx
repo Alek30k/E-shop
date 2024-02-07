@@ -74,7 +74,7 @@ const RegisterForm = () => {
         onClick={handleSubmit(onSubmit)}
       />
       <p className="text-sm">
-        Already have an account?
+        Already have an account?{" "}
         <Link className="underline" href="/login">
           Login in
         </Link>

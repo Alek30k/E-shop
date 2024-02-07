@@ -65,8 +65,8 @@ const LoginForm = () => {
         label={isLoading ? "Loading" : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
-      <p className="text-sm flex gap-2">
-        Do not have an account?
+      <p className="text-sm">
+        Do not have an account?{" "}
         <Link className="underline" href="/register">
           Sign Up
         </Link>
