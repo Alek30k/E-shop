@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/libs/prismadb";
+import bcrypt from "bcrypt";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -27,6 +28,24 @@ export default NextAuth({
             if(!credentials?.email || !credentials?.password) {
                 throw new Error("Invalid email or password")
             }
+            const user = await prisma.user.findUnique({
+                where: {
+                    email: credentials.email
+                }
+            })
+            if(!user || !user.hashedPassword){
+                throw new Error("Invalid email or password")
+            }
+
+            const isCorrectPassword = await bcrypt.compare(
+                credentials.password,
+                user.password
+            )
+            if(!isCorrectPassword){
+                throw new Error("Invalid email or password")
+            }
+
+            return user
         }
             
         
