@@ -39,7 +39,7 @@ export default NextAuth({
 
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
-          user.password
+          user.hashedPassword
         );
         if (!isCorrectPassword) {
           throw new Error("Invalid email or password");
