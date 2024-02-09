@@ -14,6 +14,8 @@ import {
 import Button from "../components/products/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +33,10 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    console.log(data);
+
+    axios.post("/api/register", data).then(() => {
+      toast.success("Account created");
+    });
   };
 
   return (
