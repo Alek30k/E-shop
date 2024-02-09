@@ -16,6 +16,7 @@ import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,12 @@ const RegisterForm = () => {
 
     axios.post("/api/register", data).then(() => {
       toast.success("Account created");
+
+      signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
     });
   };
 
