@@ -21,6 +21,9 @@ const UserMenu = () => {
           <Avatar />
           <AiFillCaretDown />
         </div>
+        {isOpen && (
+          <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer"></div>
+        )}
       </div>
     </>
   );
