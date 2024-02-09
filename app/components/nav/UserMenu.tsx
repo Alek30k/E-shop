@@ -1,7 +1,21 @@
-import React from "react";
+"use client";
+
+import { useCallback, useState } from "react";
 
 const UserMenu = () => {
-  return <div>UserMenu</div>;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  return (
+    <>
+      <div className="relative z-30">
+        <div onClick={toggleOpen}></div>
+      </div>
+    </>
+  );
 };
 
 export default UserMenu;
