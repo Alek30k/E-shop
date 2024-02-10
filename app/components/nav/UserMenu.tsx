@@ -27,7 +27,7 @@ const UserMenu = () => {
           <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
             <div>
               <Link href="orders">
-                <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
+                <MenuItem onClick={toggleOpen}>Your Orderss</MenuItem>
               </Link>
             </div>
           </div>
