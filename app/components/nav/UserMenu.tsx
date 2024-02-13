@@ -10,7 +10,7 @@ import BackDrop from "./BackDrop";
 import { SafeUser } from "@/type";
 
 interface userMenuProps {
-  currentUser: SafeUser;
+  currentUser: SafeUser | null;
 }
 
 const UserMenu = ({ currentUser }: userMenuProps) => {
@@ -40,6 +40,7 @@ const UserMenu = ({ currentUser }: userMenuProps) => {
                 <Link href="/admin">
                   <MenuItem onClick={toggleOpen}>Admin Dashboard</MenuItem>
                 </Link>
+                <hr />
                 <MenuItem
                   onClick={() => {
                     toggleOpen();
