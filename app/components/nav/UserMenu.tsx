@@ -7,8 +7,13 @@ import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import BackDrop from "./BackDrop";
+import { User } from "@prisma/client";
 
-const UserMenu = () => {
+interface userMenuProps {
+  currentUser: User;
+}
+
+const UserMenu = ({ currentUser }: userMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {

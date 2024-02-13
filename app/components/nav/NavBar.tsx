@@ -10,8 +10,6 @@ const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 const NavBar = async () => {
   const currentUser = await getCurrentUser();
 
-  console.log(currentUser);
-
   return (
     <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -27,7 +25,7 @@ const NavBar = async () => {
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
 
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>
