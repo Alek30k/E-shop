@@ -23,6 +23,12 @@ export async function getCurrentUser() {
     if (!currentUser) {
       return null;
     }
+    if (!currentUser.createdAt) {
+      return null;
+    }
+    if (!currentUser.updatedAt) {
+      return null;
+    }
 
     return {
       ...currentUser,
