@@ -23,7 +23,7 @@ interface LoginFormProps {
   currentUser: SafeUser | null;
 }
 
-const LoginForm = ({}: LoginFormProps) => {
+const LoginForm = ({ currentUser }: LoginFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -56,6 +56,10 @@ const LoginForm = ({}: LoginFormProps) => {
       }
     });
   };
+
+  if (currentUser) {
+    return <p className="text-center">Logged in. Redirecting...</p>;
+  }
 
   return (
     <>
