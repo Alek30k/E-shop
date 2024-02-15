@@ -1,16 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "../components/Heading";
 import Input from "../components/inputs/Input";
-import { register } from "module";
-import { error } from "console";
-import {
-  FieldValues,
-  useForm,
-  FormSubmitHandler,
-  SubmitHandler,
-} from "react-hook-form";
+import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/products/Button";
 import Link from "next/link";
 import { AiOutlineGoogle } from "react-icons/ai";
@@ -37,6 +30,13 @@ const LoginForm = ({ currentUser }: LoginFormProps) => {
   });
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
