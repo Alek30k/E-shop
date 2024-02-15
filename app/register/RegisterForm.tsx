@@ -85,7 +85,9 @@ const RegisterForm = ({ currentUser }: LoginFormProps) => {
         outline
         label="Sign up with Google"
         icon={AiOutlineGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
