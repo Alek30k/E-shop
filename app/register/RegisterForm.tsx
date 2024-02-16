@@ -24,7 +24,7 @@ interface RegisterFormProps {
   currentUser: SafeUser | null;
 }
 
-const RegisterForm = ({ currentUser }: LoginFormProps) => {
+const RegisterForm = ({ currentUser }: RegisterFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -83,7 +83,7 @@ const RegisterForm = ({ currentUser }: LoginFormProps) => {
       <Heading title="Sign up for E-Shop" />
       <Button
         outline
-        label="Sign up with Google"
+        label="Continue with Google"
         icon={AiOutlineGoogle}
         onClick={() => {
           signIn("google");
