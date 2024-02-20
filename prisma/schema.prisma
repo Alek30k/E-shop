@@ -41,6 +41,7 @@ model User {
   role Role @default(USER)
 
   accounts      Account[]
+  orders        Order[]
 }
 
 model Order {
@@ -51,7 +52,7 @@ model Order {
   status String
   deliveryStatus String?
   createDate DateTime @default(now())
-  products cartProductType[]
+  products CartProductType[]
   address Address?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -73,6 +74,15 @@ type Image{
   color String
   colorCode String
   image String
+}
+type Address{
+  city String
+  country String
+  line1 String
+  line2 String?
+  postal_code String
+  state String
+
 }
 
 enum Role {
