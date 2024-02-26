@@ -3,6 +3,7 @@
 import { useCart } from "@/hooks/useCart";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const CheckoutClient = () => {
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
@@ -36,6 +37,11 @@ const CheckoutClient = () => {
         .then((data) => {
           setClientSecret(data.paymentIntent.client_secret);
           handleSetPaymentIntent(data.paymentIntent.id);
+        })
+        .catch((error) => {
+          setError(true);
+          console.log("Error", error);
+          toast.error("Something went wrong");
         });
     }
   }, [cartProducts, paymentIntent]);
