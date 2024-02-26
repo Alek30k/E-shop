@@ -1,12 +1,16 @@
 "use client";
 
 import { useCart } from "@/hooks/useCart";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const CheckoutClient = () => {
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [clientSecret, setClientSecret] = useState("");
+
+  const router = useRouter();
 
   useEffect(() => {
     //create a paymentintent as soon as the page loads
@@ -21,7 +25,18 @@ const CheckoutClient = () => {
           items: cartProducts,
           payment_intent_id: paymentIntent,
         }),
-      });
+      })
+        .then((res) => {
+          setLoading(false);
+          if (res.status === 401) {
+            return router.push("/login");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setClientSecret(data.paymentIntent.client_secret);
+          handleSetPaymentIntent(data.paymentIntent.id);
+        });
     }
   }, [cartProducts, paymentIntent]);
 
