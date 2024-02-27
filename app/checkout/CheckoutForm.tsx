@@ -5,6 +5,7 @@ import { formatPrice } from "@/utils/formatPrice";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Heading from "../components/Heading";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -53,10 +54,18 @@ const CheckoutForm = ({
           handleSetPaymentSuccess(true);
           handleSetPaymentIntent(null);
         }
+
+        setIsLoading(false);
       });
   };
 
-  return <div>CheckoutForm</div>;
+  return (
+    <form onSubmit={handleSubmit} id="payment-form">
+      <div className="mb-6">
+        <Heading title="Enter your details to complete checkout" />
+      </div>
+    </form>
+  );
 };
 
 export default CheckoutForm;
