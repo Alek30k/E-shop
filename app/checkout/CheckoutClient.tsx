@@ -63,7 +63,9 @@ const CheckoutClient = () => {
     },
   };
 
-  const handleSetPaymentSuccess = useCallback(() => {}, []);
+  const handleSetPaymentSuccess = useCallback((value: boolean) => {
+    setPaymentSuccess(value);
+  }, []);
 
   return <>Checkout</>;
 };
