@@ -2,7 +2,12 @@
 
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/formatPrice";
-import { useElements, useStripe } from "@stripe/react-stripe-js";
+import {
+  AddressElement,
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Heading from "../components/Heading";
@@ -64,6 +69,16 @@ const CheckoutForm = ({
       <div className="mb-6">
         <Heading title="Enter your details to complete checkout" />
       </div>
+      <h2 className="font-semibold mb-2">Address Information</h2>
+      <AddressElement
+        options={{
+          mode: "shipping",
+          allowedCountries: ["US", "KE"],
+        }}
+      />
+      <h2 className="font-semibold mt-4 mb-2">Payment Information</h2>
+      <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
+      <div className="">Total: {formattedPrice}</div>
     </form>
   );
 };
