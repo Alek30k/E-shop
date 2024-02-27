@@ -4,6 +4,7 @@ import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/utils/formatPrice";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -37,6 +38,22 @@ const CheckoutForm = ({
     if (!stripe || !elements) {
       return;
     }
+    setIsLoading(true);
+
+    stripe
+      .confirmPayment({
+        elements,
+        redirect: "if_required",
+      })
+      .then((result) => {
+        if (!result.error) {
+          toast.success("Checkout Success");
+
+          handleClearCart();
+          handleSetPaymentSuccess(true);
+          handleSetPaymentIntent(null);
+        }
+      });
   };
 
   return <div>CheckoutForm</div>;
