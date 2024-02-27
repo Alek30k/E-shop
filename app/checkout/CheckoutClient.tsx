@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import CheckoutForm from "./CheckoutForm";
+import Button from "../components/products/Button";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -78,6 +79,18 @@ const CheckoutClient = () => {
             handleSetPaymentSuccess={handleSetPaymentSuccess}
           />
         </Elements>
+      )}
+      {loading && <div className="text-center">Loading Checkout</div>}
+      {error && (
+        <div className="text-center text-rose-500">Something went wrong...</div>
+      )}
+      {paymentSuccess && (
+        <div className="">
+          <div>Payment Success</div>
+          <div>
+            <Button label="View Your Orders" />
+          </div>
+        </div>
       )}
     </div>
   );
