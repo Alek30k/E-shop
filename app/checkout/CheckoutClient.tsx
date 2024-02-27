@@ -1,15 +1,21 @@
 "use client";
 
 import { useCart } from "@/hooks/useCart";
+import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+);
 
 const CheckoutClient = () => {
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const router = useRouter();
 
@@ -48,6 +54,16 @@ const CheckoutClient = () => {
         });
     }
   }, [cartProducts, paymentIntent]);
+
+  const options: StripeElementsOptions = {
+    clientSecret,
+    appearance: {
+      theme: "stripe",
+      labels: "floating",
+    },
+  };
+
+  const handleSetPaymentSuccess = useCallback(() => {}, []);
 
   return <>Checkout</>;
 };
