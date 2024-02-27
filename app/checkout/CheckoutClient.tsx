@@ -1,10 +1,12 @@
 "use client";
 
 import { useCart } from "@/hooks/useCart";
+import { Elements } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -67,7 +69,18 @@ const CheckoutClient = () => {
     setPaymentSuccess(value);
   }, []);
 
-  return <>Checkout</>;
+  return (
+    <div className="w-full">
+      {clientSecret && cartProducts && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm
+            clientSecret={clientSecret}
+            handleSetPaymentSuccess={handleSetPaymentSuccess}
+          />
+        </Elements>
+      )}
+    </div>
+  );
 };
 
 export default CheckoutClient;
