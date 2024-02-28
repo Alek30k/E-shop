@@ -34,4 +34,9 @@ export default async function handler(
   } catch (error) {
     return res.status(400).send("webhook error: " + error);
   }
+
+  switch (event.type) {
+    case "charge.succeeded":
+      const charge = event.data.object as Stripe.Charge;
+  }
 }
