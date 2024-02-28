@@ -23,7 +23,7 @@ export default async function handler(
     return res.status(400).send("Missing stripe signature");
   }
 
-  let event = Stripe.Event;
+  let event: Stripe.Event;
 
   try {
     event = stripe.webhooks.constructEvent(
