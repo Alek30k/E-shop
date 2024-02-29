@@ -1,7 +1,9 @@
+import AdminNav from "../components/admin/AdminNav";
+
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <div>Nav</div>
+      <AdminNav />
       {children}
     </div>
   );
