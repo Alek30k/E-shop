@@ -1,7 +1,7 @@
 "use client";
 
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface SelectColorProps {
   item: ImageType;
@@ -26,7 +26,33 @@ const SelectColor = ({
     }
   }, [isProductCreated]);
 
-  return <div>SelectColor</div>;
+  const handleFileChange = useCallback((value: File) => {
+    setFile(value);
+    addImageToState({ ...item, image: value });
+  }, []);
+
+  const handleCheck = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSelected(e.target.checked);
+
+    if (!e.target.checked) {
+      setFile(null);
+      removeImageFromState(item);
+    }
+  }, []);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-1 overflow-y-auto border-b-[1.2px] border-slate-200 items-center p-2">
+      <div className="flex flex-row gap-2 items-center h-[60px] ">
+        <input
+          id={item.color}
+          type="checkbox"
+          checked={isSelected}
+          onChange={handleCheck}
+          className="cursor-pointer"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default SelectColor;
