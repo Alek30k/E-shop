@@ -1,11 +1,11 @@
 "use client";
 
 import Heading from "@/app/components/Heading";
+import CategoryInput from "@/app/components/inputs/CategoryInput";
 import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import TextArea from "@/app/components/inputs/TextArea";
 import { categories } from "@/utils/Categories";
-import { register } from "module";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -29,6 +29,11 @@ const AddProductForm = () => {
       images: [],
     },
   });
+
+  const category = watch("category");
+
+  const setCustomValue = (id: string, value: any) => {};
+
   return (
     <>
       <Heading title="Add a Product" center />
@@ -77,6 +82,16 @@ const AddProductForm = () => {
             if (item.label === "All") {
               return null;
             }
+            return (
+              <div key={item.label}>
+                <CategoryInput
+                  onClick={(category) => setCustomValue("category", category)}
+                  selected={category === item.label}
+                  label={item.label}
+                  icon={item.icon}
+                />
+              </div>
+            );
           })}
         </div>
       </div>
