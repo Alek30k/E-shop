@@ -25,6 +25,9 @@ const CustomCheckbox = ({
         placeholder=""
         className="cursor-pointer"
       />
+      <label htmlFor={id} className="font-medium cursor-pointer">
+        {label}
+      </label>
     </div>
   );
 };
