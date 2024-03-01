@@ -32,7 +32,13 @@ const AddProductForm = () => {
 
   const category = watch("category");
 
-  const setCustomValue = (id: string, value: any) => {};
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
 
   return (
     <>
@@ -77,13 +83,13 @@ const AddProductForm = () => {
       />
       <div className="w-full font-medium">
         <div className="mb-2 font-semibold">Select a Category</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-3">
           {categories.map((item) => {
             if (item.label === "All") {
               return null;
             }
             return (
-              <div key={item.label}>
+              <div key={item.label} className="col-span">
                 <CategoryInput
                   onClick={(category) => setCustomValue("category", category)}
                   selected={category === item.label}
