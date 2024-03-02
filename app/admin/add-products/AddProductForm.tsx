@@ -24,6 +24,8 @@ export type UploadedImageType = {
 
 const AddProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [images, setImages] = useState<ImageType[] | null>();
+
   const {
     register,
     handleSubmit,
