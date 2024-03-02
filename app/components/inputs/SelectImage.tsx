@@ -5,11 +5,11 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
 interface SelectImageProps {
-  items?: ImageType;
+  item?: ImageType;
   handleFileChange: (value: File) => void;
 }
 
-const SelectImage = ({ items, handleFileChange }: SelectImageProps) => {
+const SelectImage = ({ item, handleFileChange }: SelectImageProps) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
       handleFileChange(acceptedFiles[0]);
@@ -21,7 +21,10 @@ const SelectImage = ({ items, handleFileChange }: SelectImageProps) => {
   });
 
   return (
-    <div {...getRootProps()}>
+    <div
+      {...getRootProps()}
+      className="border-2 border-slate-400 p-2 border-dashed cursor-pointer text-sm font-normal text-slate-400 flex items-center justify-center"
+    >
       <input {...getRootProps()} />
       {isDragActive ? (
         <p>Drop the image here...</p>
