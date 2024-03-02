@@ -8,7 +8,7 @@ import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
 import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 export type ImageType = {
@@ -67,6 +67,27 @@ const AddProductForm = () => {
       shouldTouch: true,
     });
   };
+
+  const addImageToState = useCallback((value: ImageType) => {
+    setImages((prev) => {
+      if (!prev) return [value];
+
+      return [...prev, value];
+    });
+  }, []);
+
+  const removeImageFromState = useCallback((value: ImageType) => {
+    setImages((prev) => {
+      if (prev) {
+        const filteredImages = prev.filter(
+          (item) => item.color !== value.color
+        );
+        return filteredImages;
+      }
+
+      return prev;
+    });
+  }, []);
 
   return (
     <>
@@ -145,8 +166,8 @@ const AddProductForm = () => {
               <SelectColor
                 key={index}
                 item={item}
-                addImageToState={() => {}}
-                removeImageFromState={() => {}}
+                addImageToState={addImageToState}
+                removeImageFromState={removeImageFromState}
                 isProductCreated={isProductCreated}
               />
             );
