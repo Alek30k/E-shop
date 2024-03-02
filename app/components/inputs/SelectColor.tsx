@@ -50,7 +50,14 @@ const SelectColor = ({
           onChange={handleCheck}
           className="cursor-pointer"
         />
+        <label htmlFor={item.color} className="font-medium cursor-pointer">
+          {item.color}
+        </label>
       </div>
+      <>
+        {isSelected && !file && <div className="col-span-2 text-center">
+          </div>}
+      </>
     </div>
   );
 };
