@@ -8,7 +8,7 @@ import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
 import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 export type ImageType = {
@@ -25,6 +25,7 @@ export type UploadedImageType = {
 const AddProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
+  const [isProductCreated, setIsProductCreated] = useState(false);
 
   const {
     register,
@@ -46,6 +47,18 @@ const AddProductForm = () => {
   });
 
   const category = watch("category");
+
+  useEffect(() => {
+    setCustomValue("images", images);
+  }, [images]);
+
+  useEffect(() => {
+    if (isProductCreated) {
+      reset();
+      setImages(null);
+      setIsProductCreated(false);
+    }
+  }, [isProductCreated]);
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -134,7 +147,7 @@ const AddProductForm = () => {
                 item={item}
                 addImageToState={() => {}}
                 removeImageFromState={() => {}}
-                isProductCreated={false}
+                isProductCreated={isProductCreated}
               />
             );
           })}
