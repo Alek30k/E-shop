@@ -6,10 +6,11 @@ import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
+import Button from "@/app/components/products/Button";
 import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
 import { useCallback, useEffect, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export type ImageType = {
   color: string;
@@ -59,6 +60,11 @@ const AddProductForm = () => {
       setIsProductCreated(false);
     }
   }, [isProductCreated]);
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    //upload images to firebase
+    //save product to mongodb
+  };
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -174,6 +180,10 @@ const AddProductForm = () => {
           })}
         </div>
       </div>
+      <Button
+        label={isLoading ? "Loading..." : "Add Product"}
+        onClick={handleSubmit(onSubmit)}
+      />
     </>
   );
 };
