@@ -12,6 +12,8 @@ import { colors } from "@/utils/Colors";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import firebaseApp from "@/libs/firebase";
 
 export type ImageType = {
   color: string;
@@ -85,6 +87,25 @@ const AddProductForm = () => {
         for (const item of data.images) {
           if (item.image) {
             const fileName = new Date().getTime() + "-" + item.image.name;
+            const storage = getStorage(firebaseApp);
+            const storageRef = ref(storage, `products/${fileName}`);
+            const uploadTask = uploadBytesResumable(storageRef, item.image);
+
+            await new Promise<void>((resolve, reject) => {
+              uploadTask.on("state_changed", (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "% done");
+                switch (snapshot.state) {
+                  case "paused":
+                    console.log("Upload is paused");
+                    break;
+                  case "running":
+                    console.log("Upload is running");
+                    break;
+                }
+              });
+            });
           }
         }
       } catch (error) {}
