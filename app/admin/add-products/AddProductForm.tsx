@@ -11,6 +11,7 @@ import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export type ImageType = {
   color: string;
@@ -69,7 +70,17 @@ const AddProductForm = () => {
 
     if (!data.category) {
       setIsLoading(false);
+      return toast.error("Category is not selected");
     }
+
+    if (data.images || data.images.length === 0) {
+      setIsLoading(false);
+      return toast.error("No selected image");
+    }
+
+    const handleImageUploads = async () => {
+      toast("Creating product, please wait...");
+    };
   };
 
   const setCustomValue = (id: string, value: any) => {
