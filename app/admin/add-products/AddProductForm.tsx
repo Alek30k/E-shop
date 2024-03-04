@@ -80,6 +80,14 @@ const AddProductForm = () => {
 
     const handleImageUploads = async () => {
       toast("Creating product, please wait...");
+
+      try {
+        for (const item of data.images) {
+          if (item.image) {
+            const fileName = new Date().getTime() + "-" + item.image.name;
+          }
+        }
+      } catch (error) {}
     };
   };
 
