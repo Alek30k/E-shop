@@ -34,10 +34,10 @@ export type UploadedImageType = {
 };
 
 const AddProductForm = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
   const [isProductCreated, setIsProductCreated] = useState(false);
-  const router = useRouter();
 
   const {
     register,
@@ -147,11 +147,19 @@ const AddProductForm = () => {
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
 
-    axios.post("/api/product", productData).then(() => {
-      toast.success("Product created");
-      setIsProductCreated(true);
-      router.refresh();
-    });
+    axios
+      .post("/api/product", productData)
+      .then(() => {
+        toast.success("Product created");
+        setIsProductCreated(true);
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Something went wrong when saving product to db");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const setCustomValue = (id: string, value: any) => {
