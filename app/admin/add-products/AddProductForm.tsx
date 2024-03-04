@@ -135,8 +135,15 @@ const AddProductForm = () => {
             });
           }
         }
-      } catch (error) {}
+      } catch (error) {
+        setIsLoading(false);
+        console.log("Error handling image uploads", error);
+        return toast.error("Error handling image uploads");
+      }
     };
+    await handleImageUploads();
+    const productData = { ...data, images: uploadedImages };
+    console.log("ProductData", productData);
   };
 
   const setCustomValue = (id: string, value: any) => {
