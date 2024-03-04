@@ -12,7 +12,12 @@ import { colors } from "@/utils/Colors";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import firebaseApp from "@/libs/firebase";
 
 export type ImageType = {
@@ -92,19 +97,41 @@ const AddProductForm = () => {
             const uploadTask = uploadBytesResumable(storageRef, item.image);
 
             await new Promise<void>((resolve, reject) => {
-              uploadTask.on("state_changed", (snapshot) => {
-                const progress =
-                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log("Upload is " + progress + "% done");
-                switch (snapshot.state) {
-                  case "paused":
-                    console.log("Upload is paused");
-                    break;
-                  case "running":
-                    console.log("Upload is running");
-                    break;
+              uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                  console.log("Upload is " + progress + "% done");
+                  switch (snapshot.state) {
+                    case "paused":
+                      console.log("Upload is paused");
+                      break;
+                    case "running":
+                      console.log("Upload is running");
+                      break;
+                  }
+                },
+                (error) => {
+                  console.log("Error uploading image" + error);
+                  reject(error);
+                },
+                () => {
+                  getDownloadURL(uploadTask.snapshot.ref)
+                    .then((downloadURL) => {
+                      uploadedImages.push({
+                        ...item,
+                        image: downloadURL,
+                      });
+                      console.log("File available at", downloadURL);
+                      resolve();
+                    })
+                    .catch((error) => {
+                      console.log("Error getting the download URL", error);
+                      reject(error);
+                    });
                 }
-              });
+              );
             });
           }
         }
