@@ -19,6 +19,8 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import firebaseApp from "@/libs/firebase";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export type ImageType = {
   color: string;
@@ -35,6 +37,7 @@ const AddProductForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState<ImageType[] | null>();
   const [isProductCreated, setIsProductCreated] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -80,7 +83,7 @@ const AddProductForm = () => {
       return toast.error("Category is not selected");
     }
 
-    if (data.images || data.images.length === 0) {
+    if (!data.images || data.images.length === 0) {
       setIsLoading(false);
       return toast.error("No selected image");
     }
@@ -143,7 +146,12 @@ const AddProductForm = () => {
     };
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
-    console.log("ProductData", productData);
+
+    axios.post("/api/product", productData).then(() => {
+      toast.success("Product created");
+      setIsProductCreated(true);
+      router.refresh();
+    });
   };
 
   const setCustomValue = (id: string, value: any) => {
