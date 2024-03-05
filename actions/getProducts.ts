@@ -47,6 +47,8 @@ export default async function getProducts(params: IProducParams) {
         },
       },
     });
+
+    return products;
   } catch (error: any) {
     throw new Error(error);
   }
