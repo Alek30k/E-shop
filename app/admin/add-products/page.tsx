@@ -10,6 +10,7 @@ const AddProducts = async () => {
   if (!currentUser || currentUser.role !== "ADMIN") {
     return <NullData title="Oops! Access denied" />;
   }
+
   return (
     <div className="p-8">
       <Container>
