@@ -17,7 +17,7 @@ const SelectImage = ({ item, handleFileChange }: SelectImageProps) => {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { "image/*": [".jpg", ".png"] },
+    accept: { "image/*": [".jpeg", ".png", ".jpg"] },
   });
 
   return (

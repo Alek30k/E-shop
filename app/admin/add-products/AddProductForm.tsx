@@ -144,8 +144,11 @@ const AddProductForm = () => {
         return toast.error("Error handling image uploads");
       }
     };
+
     await handleImageUploads();
     const productData = { ...data, images: uploadedImages };
+
+    // console.log(productData);
 
     axios
       .post("/api/product", productData)
@@ -156,6 +159,7 @@ const AddProductForm = () => {
       })
       .catch((error) => {
         toast.error("Something went wrong when saving product to db");
+        console.log(error);
       })
       .finally(() => {
         setIsLoading(false);

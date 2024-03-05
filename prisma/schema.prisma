@@ -48,11 +48,11 @@ model Product{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   description String
-  price Float
   brand String
   category String
   inStock Boolean
   images Image[]
+  price Float
   reviews Review[]
 }
 
