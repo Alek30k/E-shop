@@ -23,7 +23,25 @@ export default async function getProducts(params: IProducParams) {
     const products = await prisma.product.findMany({
       where: {
         ...query,
-        OR: [{}],
+        OR: [
+          {
+            name: {
+              contain: searchString,
+              mode: "insensitive",
+            },
+            description: {
+              contain: searchString,
+              mode: "insensitive",
+            },
+          },
+        ],
+      },
+      include: {
+        reviews: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
   } catch (error: any) {
