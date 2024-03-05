@@ -41,6 +41,9 @@ export default async function getProducts(params: IProducParams) {
           include: {
             user: true,
           },
+          orderBy: {
+            createdDate: "desc",
+          },
         },
       },
     });
