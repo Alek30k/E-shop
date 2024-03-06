@@ -26,16 +26,20 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 200 },
-    { field: "name", headerName: "NAME", width: 200 },
+    { field: "id", headerName: "ID", width: 220 },
+    { field: "name", headerName: "Name", width: 220 },
     {
       field: "price",
       headerName: "Price(USD)",
       width: 100,
       renderCell: (params) => {
-        return <div className="font">{params.row.pice}</div>;
+        return (
+          <div className="font-bold text-slate-800">{params.row.pice}</div>
+        );
       },
     },
+    { field: "category", headerName: "Category", width: 100 },
+    { field: "brand", headerName: "Brand", width: 100 },
   ];
 
   return (
