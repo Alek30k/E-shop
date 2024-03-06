@@ -88,7 +88,12 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       renderCell: (params) => {
         return (
           <div className="flex justify-between gap-4 w-full">
-            <ActionBtn icon={MdCached} onClick={() => {}} />
+            <ActionBtn
+              icon={MdCached}
+              onClick={() => {
+                handleToggleStock(params.row.id, params.row.inStock);
+              }}
+            />
             <ActionBtn icon={MdDelete} onClick={() => {}} />
             <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
           </div>
@@ -106,6 +111,10 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       .then((response) => {
         toast.success("Product status changed");
         router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Oops! Something went wrong");
+        console.log(error);
       });
   }, []);
 
