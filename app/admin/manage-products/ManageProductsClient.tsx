@@ -17,7 +17,7 @@ import { useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ref } from "firebase/storage";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -25,6 +25,7 @@ interface ManageProductsClientProps {
 
 const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
   const router = useRouter();
+  const storage = getStorage();
   let rows: any = [];
 
   if (products) {
@@ -119,7 +120,7 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       });
   }, []);
 
-  const handleDelete = useCallback((id: string, images: any[]) => {
+  const handleDelete = useCallback(async (id: string, images: any[]) => {
     toast("Deleting product, please wait!");
 
     const handleImageDelete = async () => {
@@ -127,12 +128,22 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
         for (const item of images) {
           if (item.image) {
             const imageRef = ref(storage, item.image);
+            await deleteObject(imageRef);
+
+            console.log(">>>>", item.image);
           }
         }
       } catch (error) {
         return console.log("Deleting images error", error);
       }
     };
+
+    await handleImageDelete();
+
+    axios.delete(`/api/product/${id}`).then((response) => {
+      toast.success("Product deleted");
+      router.refresh();
+    });
   }, []);
 
   return (
