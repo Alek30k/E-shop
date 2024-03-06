@@ -7,9 +7,6 @@ import Heading from "@/app/components/Heading";
 import Status from "@/app/components/Status";
 import {
   MdAccessTimeFilled,
-  MdCached,
-  MdClose,
-  MdDelete,
   MdDeliveryDining,
   MdDone,
   MdRemoveRedEye,
@@ -19,7 +16,6 @@ import { useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { deleteObject, ref } from "firebase/storage";
 import moment from "moment";
 
 interface ManageOrdersClientProps {
@@ -60,7 +56,6 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
         );
       },
     },
-    { field: "paymentStatus", headerName: "Payment Status", width: 130 },
 
     {
       field: "paymentStatus",
@@ -126,6 +121,11 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
       },
     },
     {
+      field: "date",
+      headerName: "Date",
+      width: 130,
+    },
+    {
       field: "action",
       headerName: "Actions",
       width: 200,
@@ -133,21 +133,21 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
         return (
           <div className="flex justify-between gap-4 w-full">
             <ActionBtn
-              icon={MdCached}
+              icon={MdDeliveryDining}
               onClick={() => {
-                handleToggleStock(params.row.id, params.row.inStock);
+                handleDispatch(params.row.id);
               }}
             />
             <ActionBtn
-              icon={MdDelete}
+              icon={MdDone}
               onClick={() => {
-                handleDelete(params.row.id, params.row.images);
+                handleDeliver(params.row.id);
               }}
             />
             <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
-                router.push(`product/${params.row.id}`);
+                router.push(`order/${params.row.id}`);
               }}
             />
           </div>
@@ -156,14 +156,14 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
     },
   ];
 
-  const handleToggleStock = useCallback((id: string, inStock: boolean) => {
+  const handleDispatch = useCallback((id: string) => {
     axios
-      .put("/api/product", {
+      .put("/api/order", {
         id,
-        inStock: !inStock,
+        deliveryStatus: "dispatched",
       })
       .then((response) => {
-        toast.success("Product status changed");
+        toast.success("Order Dispatch");
         router.refresh();
       })
       .catch((error) => {
@@ -172,34 +172,18 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
       });
   }, []);
 
-  const handleDelete = useCallback(async (id: string, images: any[]) => {
-    toast("Deleting product, please wait!");
-
-    const handleImageDelete = async () => {
-      try {
-        for (const item of images) {
-          if (item.image) {
-            const imageRef = ref(storage, item.image);
-            await deleteObject(imageRef);
-
-            console.log(">>>>", item.image);
-          }
-        }
-      } catch (error) {
-        return console.log("Deleting images error", error);
-      }
-    };
-
-    await handleImageDelete();
-
+  const handleDeliver = useCallback((id: string) => {
     axios
-      .delete(`/api/product/${id}`)
+      .put("/api/order", {
+        id,
+        deliveryStatus: "delivered",
+      })
       .then((response) => {
-        toast.success("Product deleted");
+        toast.success("Order Delivered");
         router.refresh();
       })
       .catch((error) => {
-        toast.error("Failed to delete product");
+        toast.error("Oops! Something went wrong");
         console.log(error);
       });
   }, []);
@@ -207,7 +191,7 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
   return (
     <div className="max-w-[1150px] m-auto text-xl">
       <div className="mb-4 mt-8">
-        <Heading title="Manage Products" center />
+        <Heading title="Manage Orders" center />
       </div>
       <div style={{ height: 600, width: "100%" }}>
         <DataGrid
