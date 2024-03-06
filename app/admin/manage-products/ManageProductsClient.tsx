@@ -3,6 +3,7 @@
 import { Product } from "@prisma/client";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { formatPrice } from "@/utils/formatPrice";
+import Heading from "@/app/components/Heading";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -62,17 +63,22 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
 
   return (
     <div>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+      <div className="mb-4 mt-8">
+        <Heading title="Manage Products" center />
+      </div>
+      <div style={{ height: 600, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 9 },
+            },
+          }}
+          pageSizeOptions={[5, 20]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 };
