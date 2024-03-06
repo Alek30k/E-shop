@@ -96,7 +96,12 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
                 handleToggleStock(params.row.id, params.row.inStock);
               }}
             />
-            <ActionBtn icon={MdDelete} onClick={() => {}} />
+            <ActionBtn
+              icon={MdDelete}
+              onClick={() => {
+                handleDelete(params.row.id, params.row.images);
+              }}
+            />
             <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
           </div>
         );
