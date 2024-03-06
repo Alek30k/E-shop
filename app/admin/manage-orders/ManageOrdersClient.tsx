@@ -6,9 +6,11 @@ import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading";
 import Status from "@/app/components/Status";
 import {
+  MdAccessTimeFilled,
   MdCached,
   MdClose,
   MdDelete,
+  MdDeliveryDining,
   MdDone,
   MdRemoveRedEye,
 } from "react-icons/md";
@@ -47,40 +49,77 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
 
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 220 },
-    { field: "name", headerName: "Name", width: 220 },
+    { field: "customer", headerName: "Customer Name", width: 130 },
     {
-      field: "price",
-      headerName: "Price(USD)",
-      width: 100,
+      field: "amount",
+      headerName: "Amount(USD)",
+      width: 130,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.price}</div>
+          <div className="font-bold text-slate-800">{params.row.amount}</div>
         );
       },
     },
-    { field: "category", headerName: "Category", width: 100 },
-    { field: "brand", headerName: "Brand", width: 100 },
+    { field: "paymentStatus", headerName: "Payment Status", width: 130 },
+
     {
-      field: "inStock",
-      headerName: "inStock",
-      width: 120,
+      field: "paymentStatus",
+      headerName: "Payment Status",
+      width: 130,
       renderCell: (params) => {
         return (
           <div>
-            {params.row.inStock === true ? (
+            {params.row.paymentStatus === "pending" ? (
               <Status
-                text="in stock"
+                text="pending"
+                icon={MdAccessTimeFilled}
+                bg="bg-slate-200"
+                color="text-slate-700"
+              />
+            ) : params.row.paymentStatus === "complete" ? (
+              <Status
+                text="completed"
                 icon={MdDone}
-                bg="bg-teal-200"
-                color="text-teal-700"
+                bg="bg-purple-200"
+                color="text-purple-700"
               />
             ) : (
+              <></>
+            )}
+          </div>
+        );
+      },
+    },
+    {
+      field: "deliveryStatus",
+      headerName: "Delivery Status",
+      width: 130,
+      renderCell: (params) => {
+        return (
+          <div>
+            {params.row.deliveryStatus === "pending" ? (
               <Status
-                text="out of stock"
-                icon={MdClose}
-                bg="bg-rose-200"
-                color="text-rose-700"
+                text="pending"
+                icon={MdAccessTimeFilled}
+                bg="bg-slate-200"
+                color="text-slate-700"
               />
+            ) : params.row.deliveryStatus === "dispatched" ? (
+              <Status
+                text="dispatched"
+                icon={MdDeliveryDining}
+                bg="bg-purple-200"
+                color="text-purple-700"
+              />
+            ) : params.row.deliveryStatus === "delivered" ? (
+              <Status
+                text="delivered"
+                icon={MdDone}
+                bg="bg-green-200"
+                color="text-green-700"
+              />
+            ) : (
+              <></>
             )}
           </div>
         );
