@@ -5,7 +5,14 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { formatPrice } from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading";
 import Status from "@/app/components/Status";
-import { MdClose, MdDone } from "react-icons/md";
+import {
+  MdCached,
+  MdClose,
+  MdDelete,
+  MdDone,
+  MdRemoveRedEye,
+} from "react-icons/md";
+import ActionBtn from "@/app/components/ActionBtn";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -74,7 +81,13 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       headerName: "Actions",
       width: 200,
       renderCell: (params) => {
-        return <div>Action</div>;
+        return (
+          <div className="flex justify-between gap-4 w-full">
+            <ActionBtn icon={MdCached} onClick={() => {}} />
+            <ActionBtn icon={MdDelete} onClick={() => {}} />
+            <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
+          </div>
+        );
       },
     },
   ];
