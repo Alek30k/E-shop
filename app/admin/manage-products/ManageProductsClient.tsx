@@ -1,7 +1,7 @@
 "use client";
 
 import { Product } from "@prisma/client";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { formatPrice } from "@/utils/formatPrice";
 
 interface ManageProductsClientProps {
@@ -24,6 +24,19 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       };
     });
   }
+
+  const columns: GridColDef[] = [
+    { field: "id", headerName: "ID", width: 200 },
+    { field: "name", headerName: "NAME", width: 200 },
+    {
+      field: "price",
+      headerName: "Price(USD)",
+      width: 100,
+      renderCell: (params) => {
+        return <div className="font">{params.row.pice}</div>;
+      },
+    },
+  ];
 
   return (
     <div>
