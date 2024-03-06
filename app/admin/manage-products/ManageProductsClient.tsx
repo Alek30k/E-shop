@@ -18,6 +18,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import firebaseApp from "@/libs/firebase";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -25,7 +26,7 @@ interface ManageProductsClientProps {
 
 const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
   const router = useRouter();
-  const storage = getStorage();
+  const storage = getStorage(firebaseApp);
   let rows: any = [];
 
   if (products) {
@@ -102,7 +103,12 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
                 handleDelete(params.row.id, params.row.images);
               }}
             />
-            <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`product/${params.row.id}`);
+              }}
+            />
           </div>
         );
       },
