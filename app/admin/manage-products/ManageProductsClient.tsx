@@ -140,10 +140,16 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
 
     await handleImageDelete();
 
-    axios.delete(`/api/product/${id}`).then((response) => {
-      toast.success("Product deleted");
-      router.refresh();
-    });
+    axios
+      .delete(`/api/product/${id}`)
+      .then((response) => {
+        toast.success("Product deleted");
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Failed to delete product");
+        console.log(error);
+      });
   }, []);
 
   return (
