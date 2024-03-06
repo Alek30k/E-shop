@@ -13,12 +13,17 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/ActionBtn";
+import { useCallback } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ManageProductsClientProps {
   products: Product[];
 }
 
 const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
+  const router = useRouter();
   let rows: any = [];
 
   if (products) {
@@ -92,6 +97,18 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
     },
   ];
 
+  const handleToggleStock = useCallback((id: string, inStock: boolean) => {
+    axios
+      .put("/api/product", {
+        id,
+        inStock: !inStock,
+      })
+      .then((response) => {
+        toast.success("Product status changed");
+        router.refresh();
+      });
+  }, []);
+
   return (
     <div className="max-w-[1150px] m-auto text-xl">
       <div className="mb-4 mt-8">
@@ -108,6 +125,7 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
           }}
           pageSizeOptions={[5, 20]}
           checkboxSelection
+          disableRowSelectionOnClick
         />
       </div>
     </div>
