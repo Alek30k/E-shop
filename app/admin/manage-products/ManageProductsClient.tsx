@@ -17,6 +17,7 @@ import { useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { ref } from "firebase/storage";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -116,6 +117,22 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
         toast.error("Oops! Something went wrong");
         console.log(error);
       });
+  }, []);
+
+  const handleDelete = useCallback((id: string, images: any[]) => {
+    toast("Deleting product, please wait!");
+
+    const handleImageDelete = async () => {
+      try {
+        for (const item of images) {
+          if (item.image) {
+            const imageRef = ref(storage, item.image);
+          }
+        }
+      } catch (error) {
+        return console.log("Deleting images error", error);
+      }
+    };
   }, []);
 
   return (
