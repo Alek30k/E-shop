@@ -75,8 +75,8 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
               <Status
                 text="completed"
                 icon={MdDone}
-                bg="bg-purple-200"
-                color="text-purple-700"
+                bg="bg-green-200"
+                color="text-green-700"
               />
             ) : (
               <></>
