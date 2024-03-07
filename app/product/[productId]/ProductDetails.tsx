@@ -2,10 +2,10 @@
 
 import { Rating } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import SetColor from "../components/products/SetColor";
-import SetQuantity from "../components/products/SetQuantity";
-import Button from "../components/products/Button";
-import ProductImage from "../components/products/ProductImage";
+import SetColor from "../../components/products/SetColor";
+import SetQuantity from "../../components/products/SetQuantity";
+import Button from "../../components/products/Button";
+import ProductImage from "../../components/products/ProductImage";
 import { useCart } from "@/hooks/useCart";
 import { MdArrowBack, MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";

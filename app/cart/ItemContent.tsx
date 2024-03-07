@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CartProductType } from "../product/ProductDetails";
+import { CartProductType } from "../product/[productId]/ProductDetails";
 import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncateText";
 import Image from "next/image";
