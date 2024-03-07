@@ -4,7 +4,7 @@ interface IParams {
   orderId?: string;
 }
 
-export default async function getOrderByd(params: IParams) {
+export default async function getOrderById(params: IParams) {
   try {
     const { orderId } = params;
 
