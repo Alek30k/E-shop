@@ -13,6 +13,9 @@ export default async function getOrderByd(params: IParams) {
         id: orderId,
       },
     });
+
+    if (!order) return null;
+    return order;
   } catch (error: any) {
     throw new Error(error);
   }
