@@ -5,7 +5,6 @@ import Status from "@/app/components/Status";
 import { formatPrice } from "@/utils/formatPrice";
 import { Order } from "@prisma/client";
 import moment from "moment";
-import { useRouter } from "next/navigation";
 import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from "react-icons/md";
 import OrderItem from "./OrderItem";
 
@@ -14,8 +13,6 @@ interface OrderDetailsProps {
 }
 
 const OrderDetails = ({ order }: OrderDetailsProps) => {
-  const router = useRouter();
-
   return (
     <div className="max-w-[1150px] m-auto flex flex-col gap-2">
       <div className="mt-8">
@@ -81,7 +78,7 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
       <div>
         <h2 className="font-semibold mt-4 mb-2">Products ordered</h2>
         <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center">
-          <div className="cols-span-2 justify-self-start">PRODUCT</div>
+          <div className="col-span-2 justify-self-start">PRODUCT</div>
           <div className="justify-self-center">PRICE</div>
           <div className="justify-self-center">QTY</div>
           <div className="justify-self-end">TOTAL</div>
