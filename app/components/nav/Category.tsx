@@ -1,5 +1,6 @@
 import { useSearchParams } from "next/dist/client/components/navigation";
 import { useRouter } from "next/router";
+import queryString from "query-string";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
 
@@ -20,8 +21,18 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       let currentQuery = {};
 
       if (params) {
-        currentQuery = qs.parse(params.toString());
+        currentQuery = queryString.parse(params.toString());
       }
+
+      const updateQuery: any = {
+        ...currentQuery,
+        category: label,
+      };
+
+      const url = queryString.stringifyUrl({
+        url: "/",
+        query: updateQuery,
+      });
     }
   }, []);
 
