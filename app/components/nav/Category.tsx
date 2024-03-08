@@ -1,8 +1,8 @@
 import { useSearchParams } from "next/dist/client/components/navigation";
-import { useRouter } from "next/router";
 import queryString from "query-string";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
+import { useRouter } from "next/navigation";
 
 interface CategoryProps {
   label: string;
@@ -40,7 +40,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       );
       router.push(url);
     }
-  }, []);
+  }, [label, params, router]);
 
   return (
     <div
