@@ -23,6 +23,11 @@ export default async function getProductById(params: IParams) {
         },
       },
     });
+
+    if (!product) {
+      return null;
+    }
+    return product;
   } catch (error: any) {
     throw new Error(error);
   }
