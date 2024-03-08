@@ -133,18 +133,6 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
         return (
           <div className="flex justify-between gap-4 w-full">
             <ActionBtn
-              icon={MdDeliveryDining}
-              onClick={() => {
-                handleDispatch(params.row.id);
-              }}
-            />
-            <ActionBtn
-              icon={MdDone}
-              onClick={() => {
-                handleDeliver(params.row.id);
-              }}
-            />
-            <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
                 router.push(`/order/${params.row.id}`);
@@ -155,38 +143,6 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
       },
     },
   ];
-
-  const handleDispatch = useCallback((id: string) => {
-    axios
-      .put("/api/order", {
-        id,
-        deliveryStatus: "dispatched",
-      })
-      .then((response) => {
-        toast.success("Order Dispatch");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error("Oops! Something went wrong");
-        console.log(error);
-      });
-  }, []);
-
-  const handleDeliver = useCallback((id: string) => {
-    axios
-      .put("/api/order", {
-        id,
-        deliveryStatus: "delivered",
-      })
-      .then((response) => {
-        toast.success("Order Delivered");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error("Oops! Something went wrong");
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">
