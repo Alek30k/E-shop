@@ -6,5 +6,24 @@ interface IParams {
 
 export default async function getProductById(params: IParams) {
   try {
-  } catch (error: any) {}
+    const { productId } = params;
+
+    const product = await prisma.product.findUnique({
+      where: {
+        id: productId,
+      },
+      include: {
+        reviews: {
+          include: {
+            user: true,
+          },
+          orderBy: {
+            createdDate: "desc",
+          },
+        },
+      },
+    });
+  } catch (error: any) {
+    throw new Error(error);
+  }
 }
