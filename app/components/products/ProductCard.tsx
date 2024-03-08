@@ -32,7 +32,7 @@ const ProductCard = ({ data }: productCardProps) => {
           />
         </div>
         <hr className="w-[100%] mt-6" />
-        <div className="mt-4">{truncateText(data.name)}Horizontal</div>
+        <div className="mt-4">{truncateText(data.name)}</div>
         <div>
           <Rating value={productRaiting} readOnly />
         </div>
