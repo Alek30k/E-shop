@@ -29,10 +29,16 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
         category: label,
       };
 
-      const url = queryString.stringifyUrl({
-        url: "/",
-        query: updateQuery,
-      });
+      const url = queryString.stringifyUrl(
+        {
+          url: "/",
+          query: updateQuery,
+        },
+        {
+          skipNull: true,
+        }
+      );
+      router.push(url);
     }
   }, []);
 
