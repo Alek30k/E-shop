@@ -2,7 +2,7 @@ import Container from "@/app/components/Container";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "@/app/components/NullData";
 import getOrdersByUserId from "@/actions/getOrdersByUserId";
-import ManageOrdersClient from "../admin/manage-orders/ManageOrdersClient";
+import OrdersClient from "./OrderClient";
 
 const Orders = async () => {
   const currentUser = await getCurrentUser();
@@ -13,10 +13,14 @@ const Orders = async () => {
 
   const orders = await getOrdersByUserId(currentUser.id);
 
+  if (!orders) {
+    return <NullData title="No orders yet..." />;
+  }
+
   return (
     <div className="pt-8">
       <Container>
-        <ManageOrdersClient orders={orders} />
+        <OrdersClient orders={orders} />
       </Container>
     </div>
   );
