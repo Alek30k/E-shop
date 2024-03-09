@@ -50,7 +50,10 @@ const AddRating = ({ product, user }: AddRatingProps) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    if (data.rating === 0) return toast.error("No rating selected");
+    if (data.rating === 0) {
+      setIsLoading(false);
+      return toast.error("No rating selected");
+    }
     const ratingData = { ...data, userId: user?.id, product: product };
 
     axios
@@ -67,6 +70,19 @@ const AddRating = ({ product, user }: AddRatingProps) => {
         setIsLoading(false);
       });
   };
+
+  if (!user || !product) return null;
+
+  const deliveredOrder = user?.orders.some(
+    (order) =>
+      order.products.find((item) => item.id === product.id) &&
+      order.deliveryStatus === "delivered"
+  );
+  const userReview = product?.reviews.find((review: Review) => {
+    return review.userId === user.id;
+  });
+
+  if (userReview || !deliveredOrder) return null;
 
   return (
     <div className="flex flex-col gap-2 max-w-[500px]">
