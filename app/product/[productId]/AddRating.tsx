@@ -6,9 +6,11 @@ import Button from "@/app/components/products/Button";
 import { SafeUser } from "@/types";
 import { Rating } from "@mui/material";
 import { Order, Product, Review } from "@prisma/client";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 interface AddRatingProps {
   product: Product & {
@@ -47,7 +49,23 @@ const AddRating = ({ product, user }: AddRatingProps) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    setIsLoading(true);
+    if (data.rating === 0) return toast.error("No rating selected");
+    const ratingData = { ...data, userId: user?.id, product: product };
+
+    axios
+      .post("/api/rating", ratingData)
+      .then(() => {
+        toast.success("Rating submitted");
+        router.refresh();
+        reset();
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
