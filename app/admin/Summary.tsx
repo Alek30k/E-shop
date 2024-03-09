@@ -1,7 +1,7 @@
 "use client";
 
 import { Order, Product, User } from "@prisma/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SumaryProps {
   orders: Order[];
@@ -43,6 +43,14 @@ const Summary = ({ orders, products, users }: SumaryProps) => {
       digit: 0,
     },
   });
+
+  useEffect(() => {
+    setSummaryData((prev) => {
+      let tempData = { ...prev };
+
+      return tempData;
+    });
+  }, [orders, products, users]);
 
   return <div></div>;
 };
