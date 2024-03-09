@@ -4,12 +4,12 @@ import { Order, Product, User } from "@prisma/client";
 
 interface SumaryProps {
   orders: Order[];
-  product: Product[];
-  user: User[];
+  products: Product[];
+  users: User[];
 }
 
-const Sumary = ({ orders, product, user }: SumaryProps) => {
+const Summary = ({ orders, products, user }: SumaryProps) => {
   return <div>Sumary</div>;
 };
 
-export default Sumary;
+export default Summary;
