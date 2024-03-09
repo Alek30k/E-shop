@@ -1,6 +1,10 @@
 "use client";
 
+import Heading from "@/app/components/Heading";
+import Input from "@/app/components/inputs/Input";
+import Button from "@/app/components/products/Button";
 import { SafeUser } from "@/types";
+import { Rating } from "@mui/material";
 import { Order, Product, Review } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -42,9 +46,32 @@ const AddRating = ({ product, user }: AddRatingProps) => {
     });
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {};
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log(data);
+  };
 
-  return <div></div>;
+  return (
+    <div className="flex flex-col gap-2 max-w-[500px]">
+      <Heading title="Rate this product" />
+      <Rating
+        onChange={(event, newValue) => {
+          setCustomValue("rating", newValue);
+        }}
+      />
+      <Input
+        id="comment"
+        label="Comment"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Button
+        label={isLoading ? "Loading" : "Rate Product"}
+        onClick={handleSubmit(onSubmit)}
+      />
+    </div>
+  );
 };
 
 export default AddRating;
