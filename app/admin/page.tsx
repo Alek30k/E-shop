@@ -1,6 +1,8 @@
 import getProducts from "@/actions/getProducts";
 import Summary from "./Summary";
 import getOrders from "@/actions/getOrders";
+import getUsers from "@/actions/getUsers";
+import Container from "../components/Container";
 
 export const metadata = {
   title: "E-shop Admin",
@@ -10,10 +12,13 @@ export const metadata = {
 const Admin = async () => {
   const products = await getProducts({ category: null });
   const orders = await getOrders();
+  const users = await getUsers();
 
   return (
     <div className="pt-8 ">
-      <Summary orders={orders} products={products} users={users} />
+      <Container>
+        <Summary orders={orders} products={products} users={users} />
+      </Container>
     </div>
   );
 };
