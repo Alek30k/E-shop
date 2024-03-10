@@ -4,6 +4,7 @@ import { Order, Product, User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Heading from "../components/Heading";
 import { formatPrice } from "@/utils/formatPrice";
+import { formatNumber } from "@/utils/formatNumber";
 
 interface SumaryProps {
   orders: Order[];
@@ -78,9 +79,9 @@ const Summary = ({ orders, products, users }: SumaryProps) => {
   const summaryKeys = Object.keys(summaryData);
 
   return (
-    <div className="mx-w-[1150px m-auto]">
+    <div className="max-w-[1150px] m-auto">
       <div className="mb-4 mt-8">
-        <Heading title="Stats" />
+        <Heading title="Stats" center />
       </div>
       <div className="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {summaryKeys &&
@@ -94,10 +95,10 @@ const Summary = ({ orders, products, users }: SumaryProps) => {
                   {summaryData[key].label === "Total Sale" ? (
                     <>{formatPrice(summaryData[key].digit)}</>
                   ) : (
-                    <>
-                    {formatPrice(summaryData[key].digit)}</>
+                    <>{formatNumber(summaryData[key].digit)}</>
                   )}
                 </div>
+                <div>{summaryData[key].label}</div>
               </div>
             );
           })}
