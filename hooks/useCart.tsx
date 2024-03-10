@@ -1,6 +1,7 @@
 "use client";
 
-import { CartProductType } from "@/app/product/ProductDetails";
+import { CartProductType } from "@/app/product/[productId]/ProductDetails";
+// import { CartProductType } from "@/app/product/ProductDetails";
 
 import {
   createContext,
@@ -68,6 +69,7 @@ export const CartContextProvider = (props: Props) => {
           }
         );
 
+        console.log(total);
         setCartTotalQty(qty);
         setCartTotalAmount(total);
       }

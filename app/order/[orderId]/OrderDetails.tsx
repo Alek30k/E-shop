@@ -20,8 +20,8 @@ const OrderDetails = ({ order }: OrderDetailsProps) => {
       </div>
       <div>Order ID: {order.id}</div>
       <div>
-        Total amount{" "}
-        <span className="font-bold">{formatPrice(order.amount)}</span>
+        Total amount:
+        <span className="font-bold"> {formatPrice(order.amount)}</span>
       </div>
       <div className="flex gap-2 items-center">
         <div>Payment status:</div>
