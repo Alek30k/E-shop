@@ -13,7 +13,7 @@ const NavBar = async () => {
   const currentUser = await getCurrentUser();
 
   return (
-    <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm dark:bg-black">
+    <div className="sticky top-0 w-full bg-slate-200 z-30 shadow-sm ">
       <div className="py-4 border-b-[1px]">
         <Container>
           <div className="flex  items-center justify-between gap-3 md:gap-0">
@@ -28,18 +28,7 @@ const NavBar = async () => {
             </div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
-              {/* <label
-                htmlFor="check"
-                className="bg-gray-400 px-1 py-1 w-[52px] rounded-full has-[:checked]:pl-6 transition-all"
-              >
-                <div className="w-6 h-6 rounded-full bg-white"></div>
-                <input
-                  type="checkbox"
-                  id="check"
-                  hidden
-                  // onChange={toggleTheme}
-                />
-              </label> */}
+
               <UserMenu currentUser={currentUser} />
             </div>
           </div>
