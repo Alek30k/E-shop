@@ -21,5 +21,36 @@ export default async function getGraphData() {
         amount: true,
       },
     });
+
+    //initialize an object to aggregate the data by day
+    const aggregatedData: {
+      [day: string]: { day: string; date: string; totalAmount: number };
+    } = {};
+
+    //Create a clone of the start date to iterate over each day
+    const currentDate = startDate.clone();
+
+    //iterate over each day in the date range
+    while (currentDate <= endDate) {
+      //format the day as a string (e.g., "Monday")
+      const day = currentDate.format("dddd");
+      console.log("dar<<<<", day, currentDate);
+
+      //Initialize the aggregated data for the day with the day, date, and totalAmount
+      aggregatedData.[day] =  {
+        day,
+        date: currentDate.format("YYYY-MM-DD"),
+        totalAmount: 0
+      }
+
+      //Move to the next day
+      currentDate.add(1, "day")
+    }
+
+    //Calculate the total amount for each day by summing the order amounts
+    result.forEach((entry) =>{
+        const day = moment(entry.createDate).format("dddd")
+    })
+
   } catch (error) {}
 }
