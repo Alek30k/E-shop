@@ -9,7 +9,7 @@ import NullData from "./components/NullData";
 interface HomeProps {
   searchParams: IProducParams;
 }
-
+// console.log(object);
 export default async function Home({ searchParams }: HomeProps) {
   const products = await getProducts(searchParams);
 
