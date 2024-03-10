@@ -1,9 +1,10 @@
 import Stripe from "stripe";
 // import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
-import { CartProductType } from "@/app/product/ProductDetails";
+// import { CartProductType } from "@/app/product/ProductDetails";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import prisma from "@/libs/prismadb";
+import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.error();
   }
 
   const body = await request.json();
