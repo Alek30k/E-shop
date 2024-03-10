@@ -37,20 +37,31 @@ export default async function getGraphData() {
       console.log("dar<<<<", day, currentDate);
 
       //Initialize the aggregated data for the day with the day, date, and totalAmount
-      aggregatedData.[day] =  {
+      aggregatedData[day] = {
         day,
         date: currentDate.format("YYYY-MM-DD"),
-        totalAmount: 0
-      }
+        totalAmount: 0,
+      };
 
       //Move to the next day
-      currentDate.add(1, "day")
+      currentDate.add(1, "day");
     }
 
     //Calculate the total amount for each day by summing the order amounts
-    result.forEach((entry) =>{
-        const day = moment(entry.createDate).format("dddd")
-    })
+    result.forEach((entry) => {
+      const day = moment(entry.createDate).format("dddd");
+      const amount = entry._sum.amount || 0;
+      aggregatedData[day].totalAmount += amount;
+    });
 
-  } catch (error) {}
+    //Convert the aggregatedData object to an array and sort it by date
+    const formattedData = Object.values(aggregatedData).sort((a, b) =>
+      moment(a.date).diff(moment(b.date))
+    );
+
+    //Return the formatted data
+    return formattedData;
+  } catch (error: any) {
+    throw new Error(error);
+  }
 }
