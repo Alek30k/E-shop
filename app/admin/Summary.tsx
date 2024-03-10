@@ -3,6 +3,7 @@
 import { Order, Product, User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Heading from "../components/Heading";
+import { formatPrice } from "@/utils/formatPrice";
 
 interface SumaryProps {
   orders: Order[];
@@ -90,7 +91,12 @@ const Summary = ({ orders, products, users }: SumaryProps) => {
                 className="rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition"
               >
                 <div className="text-xl md:text-4xl font-bold">
-                  {summaryData[key].label === "Total Sale"}
+                  {summaryData[key].label === "Total Sale" ? (
+                    <>{formatPrice(summaryData[key].digit)}</>
+                  ) : (
+                    <>
+                    {formatPrice(summaryData[key].digit)}</>
+                  )}
                 </div>
               </div>
             );
