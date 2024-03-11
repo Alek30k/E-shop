@@ -2,7 +2,7 @@
 
 // import { useSearchParams } from "next/dist/client/components/navigation";
 import queryString from "query-string";
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import { IconType } from "react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -45,17 +45,19 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
   }, [label, params, router]);
 
   return (
-    <div
-      onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
-        selected
-          ? "border-slate-800 text-slate-800"
-          : "border-transparent text-slate-500"
-      }`}
-    >
-      <Icon size={20} />
-      <div className="font-medium text-sm">{label}</div>
-    </div>
+    <Suspense fallback={<div>Cargando...</div>}>
+      <div
+        onClick={handleClick}
+        className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
+          selected
+            ? "border-slate-800 text-slate-800"
+            : "border-transparent text-slate-500"
+        }`}
+      >
+        <Icon size={20} />
+        <div className="font-medium text-sm">{label}</div>
+      </div>
+    </Suspense>
   );
 };
 
