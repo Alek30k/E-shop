@@ -177,7 +177,7 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
       .put("/api/order", {
         id,
         deliveryStatus: "delivered",
-        paymentStatus: "complete",
+        status: "complete",
       })
       .then((response) => {
         toast.success("Order Delivered");
