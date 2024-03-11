@@ -69,7 +69,6 @@ export const CartContextProvider = (props: Props) => {
           }
         );
 
-        console.log(total);
         setCartTotalQty(qty);
         setCartTotalAmount(total);
       }

@@ -140,8 +140,6 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
           if (item.image) {
             const imageRef = ref(storage, item.image);
             await deleteObject(imageRef);
-
-            console.log(">>>>", item.image);
           }
         }
       } catch (error) {
