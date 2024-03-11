@@ -172,6 +172,7 @@ const ManageOrdersClient = ({ orders }: ManageOrdersClientProps) => {
       });
   }, []);
 
+  // const handleDeliver = useCallback((id: string) => {
   const handleDeliver = useCallback((id: string) => {
     axios
       .put("/api/order", {
