@@ -1,3 +1,5 @@
+"use client";
+
 // import { useSearchParams } from "next/dist/client/components/navigation";
 import queryString from "query-string";
 import { useCallback } from "react";
