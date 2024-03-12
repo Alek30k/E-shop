@@ -14,8 +14,9 @@ const Product = async ({ params }: { params: IParams }) => {
   const product = await getProductById(params);
   const user = await getCurrentUser();
 
-  if (!product)
+  if (!product) {
     return <NullData title="Oops! Product with the give id does not exist" />;
+  }
 
   return (
     <div className="p-8">

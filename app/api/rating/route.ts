@@ -6,6 +6,7 @@ export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
+    console.log("No current user");
     return NextResponse.error();
   }
   const body = await request.json();
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
       order.products.find((item) => item.id === product.id) &&
       order.deliveryStatus === "delivered"
   );
+
   const userReview = product?.reviews.find((review: Review) => {
     return review.userId === currentUser.id;
   });
@@ -25,11 +27,11 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 
-  const review = await prisma?.review?.create({
+  const review = await prisma?.review.create({
     data: {
       comment,
       rating,
-      productId: product._id,
+      productId: product.id,
       userId,
     },
   });
