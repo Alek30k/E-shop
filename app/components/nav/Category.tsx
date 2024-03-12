@@ -4,7 +4,7 @@
 import queryString from "query-string";
 import { useCallback } from "react";
 import { IconType } from "react-icons";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface CategoryProps {
   label: string;
@@ -14,7 +14,7 @@ interface CategoryProps {
 
 const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
   const router = useRouter();
-  const params = useSearchParams();
+  // const params = useSearchParams();
 
   const handleClick = useCallback(() => {
     if (label === "All") {
@@ -22,9 +22,9 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
     } else {
       let currentQuery = {};
 
-      if (params) {
-        currentQuery = queryString.parse(params.toString());
-      }
+      // if (params) {
+      //   currentQuery = queryString.parse(params.toString());
+      // }
 
       const updateQuery: any = {
         ...currentQuery,
@@ -42,7 +42,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       );
       router.push(url);
     }
-  }, [label, params, router]);
+  }, [label, router]);
 
   return (
     <div
