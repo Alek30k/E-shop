@@ -22,7 +22,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       let currentQuery = {};
 
       if (params) {
-        currentQuery = queryString.parse(params?.toString());
+        currentQuery = queryString.parse(params.toString());
       }
 
       const updateQuery: any = {
