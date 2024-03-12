@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
+import { Suspense } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 const SearchBar = () => {
@@ -36,21 +37,23 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center">
-      <input
-        {...register("searchTerm")}
-        autoComplete="off"
-        type="text"
-        placeholder="Explore E-Shop"
-        className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
-      />
-      <button
-        onClick={handleSubmit(onSubmit)}
-        className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
-      >
-        Search
-      </button>
-    </div>
+    <Suspense fallback={<div>Cargando...</div>}>
+      <div className="flex items-center">
+        <input
+          {...register("searchTerm")}
+          autoComplete="off"
+          type="text"
+          placeholder="Explore E-Shop"
+          className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
+        />
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
+        >
+          Search
+        </button>
+      </div>
+    </Suspense>
   );
 };
 
