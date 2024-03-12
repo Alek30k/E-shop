@@ -5,6 +5,7 @@ import HomeBanner from "./components/HomeBanner";
 import ProductCard from "./components/products/ProductCard";
 import getProducts, { IProducParams } from "@/actions/getProducts";
 import NullData from "./components/NullData";
+import { Suspense } from "react";
 // import { Suspense } from "react";
 
 interface HomeProps {
@@ -18,7 +19,9 @@ export default async function Home({ searchParams }: HomeProps) {
 
   if (products.length === 0) {
     return (
-      <NullData title="Oops! No products found. Click 'All' to clear filters" />
+      <Suspense fallback={<div>Cargando...</div>}>
+        <NullData title="Oops! No products found. Click 'All' to clear filters" />
+      </Suspense>
     );
   }
 
