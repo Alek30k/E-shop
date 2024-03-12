@@ -64,6 +64,7 @@ const AddRating = ({ product, user }: AddRatingProps) => {
         reset();
       })
       .catch((error) => {
+        console.log(error);
         toast.error("Something went wrong");
       })
       .finally(() => {
