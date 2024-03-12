@@ -10,16 +10,16 @@ interface HomeProps {
   searchParams: IProducParams;
 }
 
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 export default async function Home({ searchParams }: HomeProps) {
   const products = await getProducts(searchParams);
 
-  if (products.length === 0) {
-    return (
-      <NullData title="Oops! No products found. Click 'All' to clear filters" />
-    );
-  }
+  // if (products.length === 0) {
+  //   return (
+  //     <NullData title="Oops! No products found. Click 'All' to clear filters" />
+  //   );
+  // }
 
   //Fisher-Yates shuffle algorithm
 

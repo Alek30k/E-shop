@@ -10,9 +10,9 @@ function Categories() {
   const category = params?.get("category");
   const pathname = usePathname();
 
-  const isMainPrage = pathname === "/";
+  const isMainPage = pathname === "/";
 
-  if (!isMainPrage) return null;
+  if (!isMainPage) return null;
 
   return (
     <div className="bg-white">
