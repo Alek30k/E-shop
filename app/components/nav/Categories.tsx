@@ -3,8 +3,7 @@
 import { categories } from "@/utils/Categories";
 import Container from "../Container";
 import Category from "./Category";
-import { usePathname } from "next/navigation";
-import { useSearchParams } from "next/dist/client/components/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 function Categories() {
   const params = useSearchParams();
