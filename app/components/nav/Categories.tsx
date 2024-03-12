@@ -3,16 +3,19 @@
 import { categories } from "@/utils/Categories";
 import Container from "../Container";
 import Category from "./Category";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function Categories() {
-  const params = useSearchParams();
-  const category = params?.get("category");
+  // const params = useSearchParams();
+  // const category = params?.get("category");
   const pathname = usePathname();
 
   const isMainPage = pathname === "/";
 
   if (!isMainPage) return null;
+
+  const searchParams = new URLSearchParams(window.location.search); // Obtiene los parámetros de búsqueda de la URL
+  const category = searchParams.get("category");
 
   return (
     <div className="bg-white">
