@@ -79,6 +79,7 @@ const AddRating = ({ product, user }: AddRatingProps) => {
       order.products.find((item) => item.id === product.id) &&
       order.deliveryStatus === "delivered"
   );
+
   const userReview = product?.reviews.find((review: Review) => {
     return review.userId === user.id;
   });

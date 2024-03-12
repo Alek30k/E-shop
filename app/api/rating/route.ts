@@ -9,6 +9,7 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
   const body = await request.json();
+
   const { comment, rating, product, userId } = body;
 
   const deliveredOrder = currentUser?.orders.some(
@@ -24,11 +25,11 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
 
-  const review = await prisma?.review.create({
+  const review = await prisma?.review?.create({
     data: {
       comment,
       rating,
-      productId: product.id,
+      productId: product._id,
       userId,
     },
   });
