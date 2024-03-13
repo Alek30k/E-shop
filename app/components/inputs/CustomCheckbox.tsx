@@ -16,7 +16,7 @@ const CustomCheckbox = ({
   register,
 }: CustomCheckboxProps) => {
   return (
-    <div className="w-full flex flex-row gap-2 items-center">
+    <div className="w-full flex flex-row gap-2 items-center dark:text-white">
       <input
         type="checkbox"
         id={id}

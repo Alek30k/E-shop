@@ -52,7 +52,9 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
       width: 100,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.price}</div>
+          <div className="font-bold text-slate-800 dark:text-white">
+            {params.row.price}
+          </div>
         );
       },
     },
@@ -162,7 +164,7 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
   }, []);
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
+    <div className="max-w-[1150px] m-auto text-xl dark:text-white">
       <div className="mb-4 mt-8">
         <Heading title="Manage Products" center />
       </div>
@@ -178,6 +180,7 @@ const ManageProductsClient = ({ products }: ManageProductsClientProps) => {
           pageSizeOptions={[5, 20]}
           checkboxSelection
           disableRowSelectionOnClick
+          className="dark:text-white"
         />
       </div>
     </div>

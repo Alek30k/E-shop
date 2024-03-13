@@ -22,16 +22,16 @@ const UserMenu = ({ currentUser }: userMenuProps) => {
 
   return (
     <>
-      <div className="relative z-30">
+      <div className="relative z-30 ">
         <div
           onClick={toggleOpen}
-          className="p-2 border-[1px] border-slate-400 flex flex-row items-center gap-1 rounded-full cursor-pointer haver:shadow-md transition text-slate-700"
+          className="p-2 border-[1px] border-slate-400 flex flex-row items-center gap-1 rounded-full cursor-pointer hover:shadow-md transition text-slate-700 hover:bg-darkcategory"
         >
           <Avatar src={currentUser?.image} />
           <AiFillCaretDown />
         </div>
         {isOpen && (
-          <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer">
+          <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer dark:text-white dark:bg-medium hover:dark:text-medium ">
             {currentUser ? (
               <div>
                 <Link href="/orders">

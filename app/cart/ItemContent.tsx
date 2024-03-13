@@ -19,7 +19,7 @@ const ItemContent = ({ item }: ItemContentProps) => {
     handleCartQtyDecrease,
   } = useCart();
   return (
-    <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-t-[1.5px] border-slate-200 py-4 items-center">
+    <div className="grid grid-cols-5 text-xs md:text-sm gap-4 border-t-[1.5px] border-slate-200 py-4 items-center dark:text-white">
       <div className="col-span-2 justify-self-start flex gap-2 md:gap-4">
         <Link href={`/product/${item.id}`}>
           <div className="relative w-[70px] aspect-square">
@@ -38,7 +38,7 @@ const ItemContent = ({ item }: ItemContentProps) => {
           <div>{item.selectedImg.color}</div>
           <div className="w-[70px]">
             <button
-              className="text-slate-500 underline "
+              className="text-slate-500 underline dark:text-white"
               onClick={() => handleRemoveProductFromCart(item)}
             >
               Remove
@@ -59,7 +59,7 @@ const ItemContent = ({ item }: ItemContentProps) => {
           }}
         />
       </div>
-      <div className="justify-self-end font-semibold">
+      <div className="justify-self-end font-semibold ">
         {formatPrice(item.price * item.quantity)}
       </div>
     </div>

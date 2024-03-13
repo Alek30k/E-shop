@@ -79,7 +79,7 @@ const Summary = ({ orders, products, users }: SumaryProps) => {
   const summaryKeys = Object.keys(summaryData);
 
   return (
-    <div className="max-w-[1150px] m-auto">
+    <div className="max-w-[1150px] m-auto dark:text-white">
       <div className="mb-4 mt-8">
         <Heading title="Stats" center />
       </div>

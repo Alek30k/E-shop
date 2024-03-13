@@ -10,7 +10,7 @@ interface AdminNavItemProps {
 const AdminNavItem = ({ selected, icon: Icon, label }: AdminNavItemProps) => {
   return (
     <div
-      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
+      className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer dark:text-white ${
         selected
           ? "border-b-slate-800 text-slate-800"
           : "border-transparect text-slate-500"

@@ -12,7 +12,7 @@ interface ListRatingProps {
 const ListRating = ({ product }: ListRatingProps) => {
   if (product.reviews.length === 0) return null;
   return (
-    <div>
+    <div className="dark:text-white">
       <Heading title="Product Review" />
       <div className="text-sm mt-2">
         {product.reviews &&

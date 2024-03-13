@@ -100,14 +100,16 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   }, [cartProduct]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 ">
       <ProductImage
         cartProduct={cartProduct}
         product={product}
         handleColorSelect={handleColorSelect}
       />
-      <div className="flex flex-col gap-1 text-slate-500 text-sm">
-        <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
+      <div className="flex flex-col gap-1 text-slate-500 text-sm dark:text-white">
+        <h2 className="text-3xl font-medium text-slate-700 dark:text-white">
+          {product.name}
+        </h2>
         <div className="flex items-center gap-2">
           <Rating value={productRaiting} readOnly />
           <div>{product.reviews.length} reviews</div>
@@ -128,8 +130,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         {isProductInCart ? (
           <>
             <p className="mb-2 text-slate-500 flex items-center gap-1">
-              <MdCheckCircle size={20} className="text-teal-400" />
-              <span>Product added to cart</span>
+              <MdCheckCircle size={20} className="text-teal-400 " />
+              <span className="dark:text-white">Product added to cart</span>
             </p>
             <div className="max-w-[300px]">
               <Button
@@ -142,7 +144,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
             <Link
               href={"/"}
-              className="text-slate-500 flex items-center gap-1 mt-2"
+              className="text-slate-500 flex items-center gap-1 mt-2 dark:text-white"
             >
               <MdArrowBack />
               <span>Continue Shopping</span>

@@ -14,7 +14,7 @@ interface OrderDetailsProps {
 
 const OrderDetails = ({ order }: OrderDetailsProps) => {
   return (
-    <div className="max-w-[1150px] m-auto flex flex-col gap-2">
+    <div className="max-w-[1150px] m-auto flex flex-col gap-2 dark:text-white">
       <div className="mt-8">
         <Heading title="Order Details" />
       </div>

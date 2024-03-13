@@ -119,7 +119,7 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
         label={isLoading ? "Loading" : "Sign Up"}
         onClick={handleSubmit(onSubmit)}
       />
-      <p className="text-sm">
+      <p className="text-sm dark:text-white">
         Already have an account?{" "}
         <Link className="underline" href="/login">
           Login in

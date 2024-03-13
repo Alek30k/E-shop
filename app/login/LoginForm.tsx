@@ -95,7 +95,7 @@ const LoginForm = ({ currentUser }: LoginFormProps) => {
         label={isLoading ? "Loading" : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
-      <p className="text-sm">
+      <p className="text-sm dark:text-white">
         Do not have an account?{" "}
         <Link className="underline" href="/register">
           Sign Up

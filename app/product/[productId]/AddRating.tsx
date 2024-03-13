@@ -87,7 +87,7 @@ const AddRating = ({ product, user }: AddRatingProps) => {
   if (userReview || !deliveredOrder) return null;
 
   return (
-    <div className="flex flex-col gap-2 max-w-[500px]">
+    <div className="flex flex-col gap-2 max-w-[500px] dark:text-white">
       <Heading title="Rate this product" />
       <Rating
         onChange={(event, newValue) => {

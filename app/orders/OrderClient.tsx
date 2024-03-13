@@ -52,7 +52,9 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
       width: 130,
       renderCell: (params) => {
         return (
-          <div className="font-bold text-slate-800">{params.row.amount}</div>
+          <div className="font-bold text-slate-800 dark:text-white">
+            {params.row.amount}
+          </div>
         );
       },
     },
@@ -131,7 +133,7 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
       width: 200,
       renderCell: (params) => {
         return (
-          <div className="flex justify-between gap-4 w-full">
+          <div className="flex justify-between gap-4 w-full ">
             <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
@@ -145,7 +147,7 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
   ];
 
   return (
-    <div className="max-w-[1150px] m-auto text-xl">
+    <div className="max-w-[1150px] m-auto text-xl dark:text-white">
       <div className="mb-4 mt-8">
         <Heading title=" Orders" center />
       </div>
@@ -161,6 +163,7 @@ const OrdersClient = ({ orders }: OrdersClientProps) => {
           pageSizeOptions={[5, 20]}
           checkboxSelection
           disableRowSelectionOnClick
+          className="dark:text-white"
         />
       </div>
     </div>

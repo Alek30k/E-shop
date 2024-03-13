@@ -22,12 +22,12 @@ const CartClient = ({ currentUser }: CartClientProps) => {
 
   if (!cartProducts || cartProducts.length === 0) {
     return (
-      <div className="flex flex-col items-center">
-        <div className="text-2xl">Your cart is empty</div>
+      <div className="flex flex-col items-center ">
+        <div className="text-2xl dark:text-white">Your cart is empty</div>
         <div>
           <Link
             href={"/"}
-            className="text-slate-500 flex items-center gap-1 mt-2"
+            className="text-slate-500 flex items-center gap-1 mt-2 dark:text-white"
           >
             <MdArrowBack />
             <span>Start Shopping</span>
@@ -38,9 +38,9 @@ const CartClient = ({ currentUser }: CartClientProps) => {
   }
 
   return (
-    <div>
+    <div className="dark:text-white">
       <Heading title="Shopping Cart" center />
-      <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
+      <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8 ">
         <div className="col-span-2 justify-self-start">PRODUCT</div>
         <div className="justify-self-center">PRICE</div>
         <div className="justify-self-center">QUANTITY</div>
@@ -68,7 +68,7 @@ const CartClient = ({ currentUser }: CartClientProps) => {
             <span className="">Subtotal</span>
             <span className="">{formatPrice(cartTotalAmount)}</span>
           </div>
-          <p className="text-slate-500">
+          <p className="text-slate-500 dark:text-white">
             Taxes and shipping calculate at checkout
           </p>
           <Button
@@ -80,7 +80,7 @@ const CartClient = ({ currentUser }: CartClientProps) => {
           />
           <Link
             href={"/"}
-            className="text-slate-500 flex items-center gap-1 mt-2"
+            className="text-slate-500 flex items-center gap-1 mt-2 dark:text-white"
           >
             <MdArrowBack />
             <span>Continue Shopping</span>
