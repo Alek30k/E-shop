@@ -9,7 +9,7 @@ import TextArea from "@/app/components/inputs/TextArea";
 import Button from "@/app/components/products/Button";
 import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
@@ -240,21 +240,23 @@ const AddProductForm = () => {
       <div className="w-full font-medium dark:text-white ">
         <div className="mb-2 font-semibold">Select a Category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-3">
-          {categories.map((item) => {
-            if (item.label === "All") {
-              return null;
-            }
-            return (
-              <div key={item.label} className="col-span">
-                <CategoryInput
-                  onClick={(category) => setCustomValue("category", category)}
-                  selected={category === item.label}
-                  label={item.label}
-                  icon={item.icon}
-                />
-              </div>
-            );
-          })}
+          <Suspense fallback={<div>Cargando...</div>}>
+            {categories.map((item) => {
+              if (item.label === "All") {
+                return null;
+              }
+              return (
+                <div key={item.label} className="col-span">
+                  <CategoryInput
+                    onClick={(category) => setCustomValue("category", category)}
+                    selected={category === item.label}
+                    label={item.label}
+                    icon={item.icon}
+                  />
+                </div>
+              );
+            })}
+          </Suspense>
         </div>
       </div>
       <div className="w-full flex flex-col flex-wrap gap-4 dark:text-white">
