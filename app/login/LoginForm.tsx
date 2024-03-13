@@ -33,7 +33,7 @@ const LoginForm = ({ currentUser }: LoginFormProps) => {
 
   useEffect(() => {
     if (currentUser) {
-      router.push("/cart");
+      router.push("/");
       router.refresh();
     }
   }, []);
