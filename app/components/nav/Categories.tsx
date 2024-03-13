@@ -7,15 +7,14 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 function Categories() {
   const params = useSearchParams();
-  const category = params?.get("category");
+  // const category = params?.get("category");
   const pathname = usePathname();
 
   const isMainPage = pathname === "/";
 
   if (!isMainPage) return null;
 
-  // const searchParams = new URLSearchParams(window.location.search); // Obtiene los parámetros de búsqueda de la URL
-  // const category = searchParams.get("category");
+  const category = params?.get("category") ? params.get("category") : "All";
 
   return (
     <div className="bg-white dark:bg-darkcategory ">
