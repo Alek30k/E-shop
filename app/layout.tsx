@@ -21,7 +21,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.className} text-slate-700 `}>
+      <body className={`${poppins.className} text-slate-700 dark:bg-medium`}>
         <Providers>
           <Toaster
             toastOptions={{

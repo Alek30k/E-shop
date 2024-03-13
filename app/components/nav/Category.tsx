@@ -47,7 +47,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
   return (
     <div
       onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
+      className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer dark:text-white ${
         selected
           ? "border-slate-800 text-slate-800"
           : "border-transparent text-slate-500"

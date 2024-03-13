@@ -19,10 +19,10 @@ function Categories() {
   // const category = searchParams.get("category");
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-darkcategory ">
       <Container>
         <Suspense fallback={<div>Cargando...</div>}>
-          <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+          <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto ">
             {categories.map((item) => (
               <Category
                 key={item.label}
