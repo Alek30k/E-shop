@@ -7,6 +7,7 @@ import { getCurrentUser } from "@/actions/getCurrentUser";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";
 import ThemeSwitch from "../ThemeSwitch";
+import ThemeToggle from "../ThemeToggle";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
@@ -29,7 +30,8 @@ const NavBar = async () => {
               <SearchBar />
             </div>
             <div className="flex items-center gap-8 md:gap-10">
-              <ThemeSwitch />
+              {/* <ThemeSwitch /> */}
+              <ThemeToggle />
               <CartCount />
               <UserMenu currentUser={currentUser} />
             </div>
