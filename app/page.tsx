@@ -10,8 +10,6 @@ interface HomeProps {
   searchParams: IProducParams;
 }
 
-// import { cookies } from "next/headers";
-
 export default async function Home({ searchParams }: HomeProps) {
   const products = await getProducts(searchParams);
 

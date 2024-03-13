@@ -14,7 +14,13 @@ function Categories() {
 
   if (!isMainPage) return null;
 
-  const category = params?.get("category") ? params.get("category") : "All";
+  const getCategory = (params: any) => {
+    if (!params) return "All";
+    const category = params.get("category");
+    return category ? category : "All";
+  };
+
+  const category = getCategory(params);
 
   return (
     <div className="bg-white dark:bg-darkcategory ">
