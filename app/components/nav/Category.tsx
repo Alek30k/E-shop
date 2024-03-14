@@ -1,7 +1,7 @@
 "use client";
 
 import queryString from "query-string";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { IconType } from "react-icons";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/dist/client/components/navigation";
@@ -9,7 +9,7 @@ import { useSearchParams } from "next/dist/client/components/navigation";
 interface CategoryProps {
   label: string;
   icon: IconType;
-  selected?: boolean;
+  selected: boolean;
 }
 
 const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
@@ -51,7 +51,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
         selected
           ? "border-slate-800 text-slate-800"
           : "border-transparent text-slate-500"
-      }`}
+      } `}
     >
       <Icon size={20} />
       <div className="font-medium text-sm">{label}</div>
