@@ -6,8 +6,8 @@ import Category from "./Category";
 import { usePathname, useSearchParams } from "next/navigation";
 
 function Categories() {
-  // const params = useSearchParams();
-  // const category = params?.get("category");
+  const params = useSearchParams();
+  const category = params?.get("category");
   const pathname = usePathname();
 
   const isMainPage = pathname === "/";
@@ -23,10 +23,10 @@ function Categories() {
               key={item.label}
               label={item.label}
               icon={item.icon}
-              // selected={
-              //   category === item.label ||
-              //   (category === null && item.label === "All")
-              // }
+              selected={
+                category === item.label ||
+                (category === null && item.label === "All")
+              }
             />
           ))}
         </div>
