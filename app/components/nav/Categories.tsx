@@ -6,21 +6,13 @@ import Category from "./Category";
 import { usePathname, useSearchParams } from "next/navigation";
 
 function Categories() {
-  const params = useSearchParams();
+  // const params = useSearchParams();
   // const category = params?.get("category");
   const pathname = usePathname();
 
   const isMainPage = pathname === "/";
 
   if (!isMainPage) return null;
-
-  const getCategory = (params: any) => {
-    if (!params) return "All";
-    const category = params.get("category");
-    return category ? category : "All";
-  };
-
-  const category = getCategory(params);
 
   return (
     <div className="bg-white dark:bg-darkcategory ">
@@ -31,10 +23,10 @@ function Categories() {
               key={item.label}
               label={item.label}
               icon={item.icon}
-              selected={
-                category === item.label ||
-                (category === null && item.label === "All")
-              }
+              // selected={
+              //   category === item.label ||
+              //   (category === null && item.label === "All")
+              // }
             />
           ))}
         </div>
