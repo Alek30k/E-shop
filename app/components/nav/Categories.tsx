@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { categories } from "@/utils/Categories";
 import Container from "../Container";
 import Category from "./Category";
@@ -15,23 +16,25 @@ function Categories() {
   if (!isMainPage) return null;
 
   return (
-    <div className="bg-white dark:bg-darkcategory ">
-      <Container>
-        <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto ">
-          {categories.map((item) => (
-            <Category
-              key={item.label}
-              label={item.label}
-              icon={item.icon}
-              selected={
-                category === item.label ||
-                (category === null && item.label === "All")
-              }
-            />
-          ))}
-        </div>
-      </Container>
-    </div>
+    <Suspense fallback={<div>Cargando categorías...</div>}>
+      <div className="bg-white dark:bg-darkcategory ">
+        <Container>
+          <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto ">
+            {categories.map((item) => (
+              <Category
+                key={item.label}
+                label={item.label}
+                icon={item.icon}
+                selected={
+                  category === item.label ||
+                  (category === null && item.label === "All")
+                }
+              />
+            ))}
+          </div>
+        </Container>
+      </div>
+    </Suspense>
   );
 }
 
