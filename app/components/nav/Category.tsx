@@ -7,7 +7,7 @@ import { useSearchParams } from "next/dist/client/components/navigation";
 interface CategoryProps {
   label: string;
   icon: IconType;
-  selected: boolean;
+  selected?: boolean;
 }
 
 const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
@@ -40,7 +40,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       );
       router.push(url);
     }
-  }, [label, params, router]);
+  }, [selected, label, params, router]);
 
   return (
     <div
