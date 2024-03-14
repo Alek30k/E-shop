@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import queryString from "query-string";
 import { useCallback, useState } from "react";
 import { IconType } from "react-icons";
@@ -45,17 +46,19 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
   }, [label, params, router]);
 
   return (
-    <div
-      onClick={handleClick}
-      className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer dark:text-white ${
-        selected
-          ? "border-slate-800 text-slate-800"
-          : "border-transparent text-slate-500"
-      } `}
-    >
-      <Icon size={20} />
-      <div className="font-medium text-sm">{label}</div>
-    </div>
+    <Suspense fallback={<div>Cargando categorías...</div>}>
+      <div
+        onClick={handleClick}
+        className={`flex items-center justify-center text-center gap-1 pb-2 border-b-2 hover:text-slate-800 transition cursor-pointer dark:text-white ${
+          selected
+            ? "border-slate-800 text-slate-800"
+            : "border-transparent text-slate-500"
+        } `}
+      >
+        <Icon size={20} />
+        <div className="font-medium text-sm">{label}</div>
+      </div>
+    </Suspense>
   );
 };
 
