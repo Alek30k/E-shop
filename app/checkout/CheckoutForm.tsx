@@ -67,19 +67,23 @@ const CheckoutForm = ({
 
   return (
     <form onSubmit={handleSubmit} id="payment-form">
-      <div className="mb-6">
+      <div className="mb-6 dark:text-white">
         <Heading title="Enter your details to complete checkout" />
       </div>
-      <h2 className="font-semibold mb-2">Address Information</h2>
+      <h2 className="font-semibold mb-2 dark:text-white">
+        Address Information
+      </h2>
       <AddressElement
         options={{
           mode: "shipping",
           allowedCountries: ["US", "KE"],
         }}
       />
-      <h2 className="font-semibold mt-4 mb-2">Payment Information</h2>
+      <h2 className="font-semibold mt-4 mb-2 dark:text-white">
+        Payment Information
+      </h2>
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
-      <div className="py-4 text-center text-slate-700 text-xl font-bold">
+      <div className="py-4 text-center text-slate-700 text-xl font-bold dark:text-white">
         Total: {formattedPrice}
       </div>
       <Button
