@@ -6,7 +6,6 @@ import { MdArrowBack } from "react-icons/md";
 import Heading from "../components/Heading";
 import Button from "../components/products/Button";
 import ItemContent from "./ItemContent";
-import { it } from "node:test";
 import { formatPrice } from "@/utils/formatPrice";
 import { SafeUser } from "@/types";
 import { useRouter } from "next/navigation";

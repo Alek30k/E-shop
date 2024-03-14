@@ -6,7 +6,7 @@ import Category from "./Category";
 import { usePathname, useSearchParams } from "next/navigation";
 
 function Categories() {
-  // const params = useSearchParams();
+  const params = useSearchParams();
   // const category = params?.get("category");
   const pathname = usePathname();
 
