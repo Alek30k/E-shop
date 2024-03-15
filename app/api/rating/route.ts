@@ -5,8 +5,11 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
+  console.log(request);
+
   if (!currentUser) {
     console.log("No current user");
+    console.log("ooooopss sorry");
     return NextResponse.error();
   }
   const body = await request.json();
