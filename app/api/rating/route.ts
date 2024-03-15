@@ -5,20 +5,13 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
-  console.log(request);
-
   if (!currentUser) {
     console.log("No current user");
-    console.log("ooooopss sorry");
     return NextResponse.error();
   }
   const body = await request.json();
 
-  console.log(body);
-
   const { comment, rating, product, userId } = body;
-
-  console.log(comment);
 
   const deliveredOrder = currentUser?.orders.some(
     (order) =>
@@ -26,13 +19,9 @@ export async function POST(request: Request) {
       order.deliveryStatus === "delivered"
   );
 
-  console.log(deliveredOrder);
-
   const userReview = product?.reviews.find((review: Review) => {
     return review.userId === currentUser.id;
   });
-
-  console.log(userReview);
 
   if (userReview || !deliveredOrder) {
     return NextResponse.error();
@@ -46,8 +35,6 @@ export async function POST(request: Request) {
       userId,
     },
   });
-
-  console.log(review);
 
   return NextResponse.json(review);
 }
