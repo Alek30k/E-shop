@@ -4,7 +4,6 @@ import { categories } from "@/utils/Categories";
 import Container from "../Container";
 import Category from "./Category";
 import { usePathname, useSearchParams } from "next/navigation";
-import queryString from "query-string";
 
 function Categories() {
   const params = useSearchParams();

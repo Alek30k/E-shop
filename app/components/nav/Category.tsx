@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { IconType } from "react-icons";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/dist/client/components/navigation";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface CategoryProps {
   label: string;
@@ -13,6 +14,13 @@ interface CategoryProps {
 const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
   const router = useRouter();
   const params = useSearchParams();
+
+  const { reset } = useForm<FieldValues>({
+    defaultValues: {
+      query: "",
+      searchTerm: "",
+    },
+  });
 
   const handleClick = useCallback(() => {
     if (label === "All") {
@@ -32,7 +40,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       const url = queryString.stringifyUrl(
         {
           url: "/",
-          query: updateQuery,
+          query: { category: updateQuery.category },
         },
         {
           skipNull: true,
@@ -40,6 +48,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
       );
 
       router.push(url);
+      reset();
     }
   }, [label, params, router]);
 
