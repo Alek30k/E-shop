@@ -12,8 +12,8 @@ const AdminNavItem = ({ selected, icon: Icon, label }: AdminNavItemProps) => {
     <div
       className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer dark:text-white ${
         selected
-          ? "border-b-slate-800 text-slate-800"
-          : "border-transparect text-slate-500"
+          ? "border-b-slate-800 text-slate-800 dark:border-white"
+          : "border-transparect text-slate-500 dark:border-gray-700"
       }`}
     >
       <Icon size={20} />
