@@ -35,14 +35,21 @@ const SearchBar = () => {
     reset();
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit(onSubmit)();
+    }
+  };
+
   return (
     <div className="flex items-center">
       <input
         {...register("searchTerm")}
         autoComplete="off"
         type="text"
+        onKeyPress={handleKeyPress}
         placeholder="Explore E-Shop"
-        className="p-2 border border-gray-300 dark:text-medium rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
+        className="p-2 border border-gray-300 dark:text-white rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
       />
       <button
         onClick={handleSubmit(onSubmit)}
