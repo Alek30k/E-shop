@@ -1,5 +1,5 @@
 import queryString from "query-string";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { IconType } from "react-icons";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/dist/client/components/navigation";

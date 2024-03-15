@@ -8,20 +8,8 @@ import queryString from "query-string";
 
 function Categories() {
   const params = useSearchParams();
-  // const category = params?.get("category");
+  const category = params?.get("category");
   const pathname = usePathname();
-
-  let currentQuery = {};
-
-  if (params) {
-    currentQuery = queryString.parse(params.toString());
-  }
-
-  const updateQuery: any = {
-    ...currentQuery,
-  };
-
-  const category = updateQuery.category;
 
   const isMainPage = pathname === "/";
 
