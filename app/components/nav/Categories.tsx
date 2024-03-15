@@ -26,7 +26,7 @@ function Categories() {
               icon={item.icon}
               selected={
                 category === item.label ||
-                (category === undefined && item.label === "All")
+                (category === null && item.label === "All")
               }
             />
           ))}
