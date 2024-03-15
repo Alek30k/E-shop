@@ -4,15 +4,26 @@ import { categories } from "@/utils/Categories";
 import Container from "../Container";
 import Category from "./Category";
 import { usePathname, useSearchParams } from "next/navigation";
+import queryString from "query-string";
 
 function Categories() {
   const params = useSearchParams();
-  const category = params?.get("category");
+  // const category = params?.get("category");
   const pathname = usePathname();
 
-  const isMainPage = pathname === "/";
+  let currentQuery = {};
 
-  console.log(category);
+  if (params) {
+    currentQuery = queryString.parse(params.toString());
+  }
+
+  const updateQuery: any = {
+    ...currentQuery,
+  };
+
+  const category = updateQuery.category;
+
+  const isMainPage = pathname === "/";
 
   if (!isMainPage) return null;
 
@@ -25,10 +36,10 @@ function Categories() {
               key={item.label}
               label={item.label}
               icon={item.icon}
-              // selected={
-              //   category === item.label ||
-              //   (category === null && item.label === "All")
-              // }
+              selected={
+                category === item.label ||
+                (category === undefined && item.label === "All")
+              }
             />
           ))}
         </div>
