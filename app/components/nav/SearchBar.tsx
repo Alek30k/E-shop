@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -19,7 +20,10 @@ const SearchBar = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    if (!data.searchTerm) return router.push("/");
+    if (!data.searchTerm) {
+      toast("no escribiste nada pendejo");
+      return router.push("/");
+    }
 
     const url = queryString.stringifyUrl(
       {

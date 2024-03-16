@@ -10,8 +10,6 @@ const ThemeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const temaAlmacenado = localStorage.getItem("tema");
@@ -22,7 +20,20 @@ const ThemeToggle = () => {
         localStorage.setItem("theme", "light");
       }
     }
+    setMounted(true);
   }, []);
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const temaAlmacenado = localStorage.getItem("tema");
+  //     if (temaAlmacenado) {
+  //       setTheme(temaAlmacenado);
+  //     } else {
+  //       setTheme("light");
+  //       localStorage.setItem("theme", "light");
+  //     }
+  //   }
+  // }, []);
 
   const manejarCambioTema = () => {
     const nuevoTema = resolvedTheme === "dark" ? "light" : "dark";
