@@ -42,7 +42,7 @@ const RegisterForm = ({ currentUser }: RegisterFormProps) => {
 
   useEffect(() => {
     if (currentUser) {
-      router.push("/cart");
+      router.push("/");
       router.refresh();
     }
   }, []);

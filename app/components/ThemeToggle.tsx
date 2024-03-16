@@ -10,7 +10,12 @@ const ThemeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true));
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+
+    setTheme(localTheme || "light");
+    setMounted(true);
+  }, [setTheme]);
 
   const manejarCambioTema = () => {
     const nuevoTema = resolvedTheme === "dark" ? "light" : "dark";

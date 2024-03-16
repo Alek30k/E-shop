@@ -34,6 +34,10 @@ const UserMenu = ({ currentUser }: userMenuProps) => {
           <div className="absolute rounded-md shadow-md w-[170px] bg-white overflow-hidden right-0 top-12 text-sm flex flex-col cursor-pointer dark:text-white dark:bg-medium  ">
             {currentUser ? (
               <div>
+                <div className="px-4 py-2 capitalize flex justify-center ">
+                  {currentUser?.name}
+                </div>
+                <hr />
                 <Link href="/orders" className="hover:dark:text-medium">
                   <MenuItem onClick={toggleOpen}>Your Orders</MenuItem>
                 </Link>
