@@ -61,7 +61,7 @@ const Category = ({ label, icon: Icon, selected }: CategoryProps) => {
           : "border-transparent text-slate-500"
       }`}
     >
-      <Icon size={20} />
+      <Icon size={20} className="hidden md:flex" />
       <div className="font-medium text-sm">{label}</div>
     </div>
   );
