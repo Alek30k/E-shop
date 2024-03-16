@@ -19,7 +19,9 @@ const CategoryInput = ({
     <div
       onClick={() => onClick(label)}
       className={`rounded-xl border-2 p-4 flex flex-col items-center gap-2 hover:border-slate-500 transition cursor-pointer ${
-        selected ? "border-slate-500" : "border-slate-200"
+        selected
+          ? "border-slate-500 dark:border-white"
+          : "border-slate-200 dark:border-gray-600"
       }`}
     >
       <Icon size={30} />

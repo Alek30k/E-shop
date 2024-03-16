@@ -53,7 +53,7 @@ const SearchBar = () => {
         type="text"
         onKeyPress={handleKeyPress}
         placeholder="Explore E-Shop"
-        className="p-2 border border-gray-300 dark:text-white rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
+        className="p-2 border border-gray-300 dark:border-gray-700 dark:text-white dark:bg-transparent rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
       />
       <button
         onClick={handleSubmit(onSubmit)}
