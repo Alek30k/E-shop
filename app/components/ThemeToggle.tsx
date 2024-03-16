@@ -1,18 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaMoon } from "react-icons/fa";
-import { BsSunFill } from "react-icons/bs";
+
 import { FiSun, FiMoon } from "react-icons/fi";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 
 const ThemeToggle = () => {
-  // const [darkMode, setDarkMode] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const temaAlmacenado = localStorage.getItem("tema");
+      if (temaAlmacenado) {
+        setTheme(temaAlmacenado);
+      } else {
+        setTheme("light");
+        localStorage.setItem("theme", "light");
+      }
+    }
+  }, []);
+
+  const manejarCambioTema = () => {
+    const nuevoTema = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(nuevoTema);
+    if (mounted) {
+      localStorage.setItem("theme", nuevoTema);
+    }
+  };
 
   if (!mounted)
     return (
@@ -27,35 +45,17 @@ const ThemeToggle = () => {
       />
     );
 
-  // useEffect(() => {
-  //   const theme = localStorage.getItem("theme");
-  //   if (theme === "dark") setDarkMode(true);
-  // }, []);
+  return (
+    <div className="text-3xl">
+      <FiSun onClick={manejarCambioTema} />
+    </div>
+  );
 
-  // useEffect(() => {
-  //   if (darkMode) {
-  //     document.documentElement.classList.add("dark");
-  //     localStorage.setItem("theme", "dark");
-  //   } else {
-  //     document.documentElement.classList.remove("dark");
-  //     localStorage.setItem("theme", "light");
-  //   }
-  // }, [darkMode]);
-  if (resolvedTheme === "dark") {
-    return (
-      <div className="text-3xl">
-        <FiSun onClick={() => setTheme("light")} />
-      </div>
-    );
-  }
-
-  if (resolvedTheme === "light") {
-    return (
-      <div className="text-3xl">
-        <FiMoon onClick={() => setTheme("dark")} />
-      </div>
-    );
-  }
+  return (
+    <div className="text-3xl">
+      <FiMoon onClick={manejarCambioTema} />
+    </div>
+  );
 };
 
 export default ThemeToggle;
