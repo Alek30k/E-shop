@@ -10,30 +10,7 @@ const ThemeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const temaAlmacenado = localStorage.getItem("tema");
-      if (temaAlmacenado) {
-        setTheme(temaAlmacenado);
-      } else {
-        setTheme("light");
-        localStorage.setItem("theme", "light");
-      }
-    }
-    setMounted(true);
-  }, []);
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     const temaAlmacenado = localStorage.getItem("tema");
-  //     if (temaAlmacenado) {
-  //       setTheme(temaAlmacenado);
-  //     } else {
-  //       setTheme("light");
-  //       localStorage.setItem("theme", "light");
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => setMounted(true));
 
   const manejarCambioTema = () => {
     const nuevoTema = resolvedTheme === "dark" ? "light" : "dark";
@@ -58,13 +35,11 @@ const ThemeToggle = () => {
 
   return (
     <div className="text-3xl">
-      <FiSun onClick={manejarCambioTema} />
-    </div>
-  );
-
-  return (
-    <div className="text-3xl">
-      <FiMoon onClick={manejarCambioTema} />
+      {resolvedTheme === "dark" ? (
+        <FiSun onClick={manejarCambioTema} />
+      ) : (
+        <FiMoon onClick={manejarCambioTema} />
+      )}
     </div>
   );
 };
