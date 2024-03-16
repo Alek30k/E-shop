@@ -39,7 +39,7 @@ const ThemeToggle = () => {
     );
 
   return (
-    <div className="text-3xl">
+    <div className="text-3xl cursor-pointer">
       {resolvedTheme === "dark" ? (
         <FiSun onClick={manejarCambioTema} />
       ) : (

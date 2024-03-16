@@ -6,7 +6,7 @@ import UserMenu from "./UserMenu";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import Categories from "./Categories";
 import SearchBar from "./SearchBar";
-import ThemeSwitch from "../ThemeSwitch";
+// import ThemeSwitch from "../ThemeSwitch";
 import ThemeToggle from "../ThemeToggle";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });

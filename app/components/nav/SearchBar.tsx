@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { CiSearch } from "react-icons/ci";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -57,9 +58,9 @@ const SearchBar = () => {
       />
       <button
         onClick={handleSubmit(onSubmit)}
-        className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
+        className=" hover:opacity-80  text-white p-3 rounded-r-md w-10 bg-slate-500"
       >
-        Search
+        <CiSearch />
       </button>
     </div>
   );
