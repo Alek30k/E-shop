@@ -7,6 +7,7 @@ import CartProvider from "@/providers/CartProvider";
 import { Toaster } from "react-hot-toast";
 import { Providers } from "./providers";
 import { Suspense } from "react";
+import Skeleton from "./skeletons/skeletonBanner";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -34,7 +35,7 @@ export default async function RootLayout({
           />
           <CartProvider>
             <div className="flex flex-col min-h-screen dark:text-white">
-              <Suspense fallback="cargando...">
+              <Suspense>
                 <NavBar />
                 <main className="flex-grow">{children}</main>
               </Suspense>
