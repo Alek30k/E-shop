@@ -15,9 +15,11 @@ export default async function Home({ searchParams }: HomeProps) {
 
   if (products.length === 0) {
     return (
-      <div className="dark:text-white">
-        <NullData title="Oops! No products found. Click 'All' to clear filters" />
-      </div>
+      <Container>
+        <div className="dark:text-white text-center">
+          <NullData title="Oops! No products found. Click 'All' to clear filters" />
+        </div>
+      </Container>
     );
   }
 
