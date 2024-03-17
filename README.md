@@ -1,4 +1,4 @@
-# Csa Sta Rta
+# E-shop
 
 React-Next.js-Prisma-Tailwind-Typescript-Stripe-firebase-MongoDB
 
